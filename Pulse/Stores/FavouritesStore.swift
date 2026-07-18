@@ -21,8 +21,8 @@ final class FavouritesStore: ObservableObject {
         defer { isLoading = false }
         await migrateLegacyLocalFavourites()
         if let fetched = try? await api.favouriteEvents() {
-            events = fetched
-            ids = Set(fetched.map(\.id))
+            events = fetched.filter { !$0.isConcertsTrackerOnly }
+            ids = Set(events.map(\.id))
         }
     }
 

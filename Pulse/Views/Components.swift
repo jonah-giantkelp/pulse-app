@@ -6,11 +6,13 @@ struct PulseMark: Shape {
     func path(in rect: CGRect) -> Path {
         // Normalised from the 1024pt icon artwork
         let pts: [(CGFloat, CGFloat)] = [
-            (110, 512), (300, 512),
-            (356, 446), (424, 610),
-            (492, 300), (560, 724),
-            (628, 430), (688, 566),
-            (740, 512), (914, 512),
+            (100, 512), (246, 512),
+            (296, 478), (348, 548),
+            (404, 424), (462, 628),
+            (518, 286), (576, 736),
+            (634, 424), (690, 572),
+            (742, 486), (788, 512),
+            (924, 512),
         ]
         var path = Path()
         let scaleX = rect.width / 1024
@@ -365,7 +367,7 @@ struct EventCard: View {
         .contentShape(Rectangle())
         .onTapGesture { showDetail = true }
         .sheet(isPresented: $showDetail) {
-            EventDetailView(event: event)
+            EventDetailView(event: event, isPresented: $showDetail)
         }
     }
 }

@@ -2,11 +2,13 @@ import SwiftUI
 
 struct EventDetailView: View {
     let event: Event
+    // The presenting card's sheet flag — environment dismiss is unreliable
+    // when the presenter sits inside a NavigationStack push.
+    @Binding var isPresented: Bool
 
     @EnvironmentObject private var router: AppRouter
     @EnvironmentObject private var artists: ArtistStore
     @EnvironmentObject private var favourites: FavouritesStore
-    @Environment(\.dismiss) private var dismiss
 
     @State private var showFullLineup = false
 
@@ -50,7 +52,7 @@ struct EventDetailView: View {
     private var header: some View {
         HStack {
             Button {
-                dismiss()
+                isPresented = false
             } label: {
                 Image(systemName: "chevron.left")
                     .font(.system(size: 15, weight: .bold))
@@ -134,7 +136,7 @@ struct EventDetailView: View {
                                 .stroke(Color.pulseDanger, lineWidth: 1)
                         )
                 }
-                if let source = event.source, source != "social_ai" {
+                if let source = event.source, !["social_ai", "concerts_tracker"].contains(source) {
                     SourceBadge(text: source)
                 }
             }
@@ -222,7 +224,7 @@ struct EventDetailView: View {
 
     @ViewBuilder
     private var ticketsBlock: some View {
-        let links = event.ticketLinks ?? []
+        let links = event.realTicketLinks
         if !links.isEmpty {
             sectionBlock("Tickets") {
                 VStack(spacing: 8) {
@@ -291,7 +293,9 @@ struct EventDetailView: View {
 
                     if !untrackedLineup.isEmpty {
                         Button {
-                            withAnimation(.snappy) { showFullLineup.toggle() }
+                            withAnimation(.spring(duration: 0.35, bounce: 0.15)) {
+                                showFullLineup.toggle()
+                            }
                         } label: {
                             HStack(spacing: 6) {
                                 Text(showFullLineup
@@ -299,8 +303,9 @@ struct EventDetailView: View {
                                     : "FULL LINEUP (\(untrackedLineup.count + tracked.count))")
                                     .font(.mono(10, .bold))
                                     .kerning(1)
-                                Image(systemName: showFullLineup ? "chevron.up" : "chevron.down")
+                                Image(systemName: "chevron.down")
                                     .font(.system(size: 9, weight: .bold))
+                                    .rotationEffect(.degrees(showFullLineup ? 180 : 0))
                             }
                             .foregroundStyle(Color.pulseTextMuted)
                             .contentShape(Rectangle())
@@ -308,26 +313,31 @@ struct EventDetailView: View {
                         .buttonStyle(.plain)
                         .padding(.top, 2)
 
-                        if showFullLineup {
-                            ForEach(untrackedLineup, id: \.self) { name in
-                                Button {
-                                    router.searchFor(name)
-                                    dismiss()
-                                } label: {
-                                    HStack(spacing: 10) {
-                                        ArtistAvatar(url: nil, name: name, size: 32)
-                                        Text(name)
-                                            .font(.mono(13))
-                                            .foregroundStyle(Color.pulseTextSecondary)
-                                        Spacer()
-                                        Image(systemName: "magnifyingglass")
-                                            .font(.system(size: 12))
-                                            .foregroundStyle(Color.pulseTextFaint)
+                        VStack(alignment: .leading, spacing: 10) {
+                            if showFullLineup {
+                                ForEach(untrackedLineup, id: \.self) { name in
+                                    Button {
+                                        router.searchFor(name)
+                                        isPresented = false
+                                    } label: {
+                                        HStack(spacing: 10) {
+                                            ArtistAvatar(url: nil, name: name, size: 32)
+                                            Text(name)
+                                                .font(.mono(13))
+                                                .foregroundStyle(Color.pulseTextSecondary)
+                                            Spacer()
+                                            Image(systemName: "magnifyingglass")
+                                                .font(.system(size: 12))
+                                                .foregroundStyle(Color.pulseTextFaint)
+                                        }
+                                        .contentShape(Rectangle())
                                     }
+                                    .buttonStyle(.plain)
                                 }
-                                .buttonStyle(.plain)
+                                .transition(.opacity.combined(with: .move(edge: .top)))
                             }
                         }
+                        .clipped() // rows unfold from under the toggle, no overflow flash
                     }
                 }
             }

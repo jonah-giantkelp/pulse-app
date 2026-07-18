@@ -199,6 +199,7 @@ struct CalendarModeView: View {
 
     @State private var displayedMonth = Calendar.current.startOfMonth(for: Date())
     @State private var selectedDay = Calendar.current.startOfDay(for: Date())
+    @State private var slideFrom: Edge = .trailing
 
     private let columns = Array(repeating: GridItem(.flexible()), count: 7)
     private let weekdays = ["M", "T", "W", "T", "F", "S", "S"]
@@ -211,6 +212,8 @@ struct CalendarModeView: View {
         ScrollView {
             VStack(spacing: 14) {
                 monthHeader
+                    // The month label snaps — only the grid slide animates
+                    .transaction { $0.animation = nil }
 
                 LazyVGrid(columns: columns, spacing: 6) {
                     ForEach(Array(weekdays.enumerated()), id: \.offset) { _, day in
@@ -227,17 +230,21 @@ struct CalendarModeView: View {
                     }
                 }
                 .padding(.horizontal, 4)
+                .id(displayedMonth) // new month slides in from the swipe side
+                .transition(.push(from: slideFrom))
                 .contentShape(Rectangle())
                 .gesture(
                     DragGesture(minimumDistance: 25)
                         .onEnded { value in
                             // Horizontal-dominant swipes only, so vertical scroll wins otherwise
                             guard abs(value.translation.width) > abs(value.translation.height) * 1.5 else { return }
+                            slideFrom = value.translation.width < 0 ? .trailing : .leading
                             withAnimation(.snappy) {
                                 shiftMonth(value.translation.width < 0 ? 1 : -1)
                             }
                         }
                 )
+                .clipped()
 
                 let dayEvents = events(on: selectedDay)
                 VStack(alignment: .leading, spacing: 12) {
@@ -255,6 +262,7 @@ struct CalendarModeView: View {
                     }
                 }
                 .padding(.top, 8)
+                .transaction { $0.animation = nil }
             }
             .padding(.horizontal, 16)
             .padding(.bottom, 24)
@@ -263,7 +271,10 @@ struct CalendarModeView: View {
 
     private var monthHeader: some View {
         HStack {
-            Button { withAnimation(.snappy) { shiftMonth(-1) } } label: {
+            Button {
+                slideFrom = .leading
+                withAnimation(.snappy) { shiftMonth(-1) }
+            } label: {
                 Image(systemName: "chevron.left")
                     .foregroundStyle(Color.pulseAccent)
                     .frame(width: 40, height: 32)
@@ -276,7 +287,10 @@ struct CalendarModeView: View {
                 .kerning(2)
                 .foregroundStyle(.white)
             Spacer()
-            Button { withAnimation(.snappy) { shiftMonth(1) } } label: {
+            Button {
+                slideFrom = .trailing
+                withAnimation(.snappy) { shiftMonth(1) }
+            } label: {
                 Image(systemName: "chevron.right")
                     .foregroundStyle(Color.pulseAccent)
                     .frame(width: 40, height: 32)
@@ -316,7 +330,8 @@ struct CalendarModeView: View {
     }
 
     /// Days of the displayed month with leading nils to align the first
-    /// weekday (Monday-first grid).
+    /// weekday (Monday-first grid), padded to a constant 6 rows so the
+    /// content below never jumps between months.
     private var monthCells: [Date?] {
         let calendar = Calendar.current
         guard let range = calendar.range(of: .day, in: .month, for: displayedMonth) else { return [] }
@@ -325,6 +340,9 @@ struct CalendarModeView: View {
         var cells: [Date?] = Array(repeating: nil, count: leading)
         for day in range {
             cells.append(calendar.date(byAdding: .day, value: day - 1, to: displayedMonth))
+        }
+        while cells.count < 42 {
+            cells.append(nil)
         }
         return cells
     }

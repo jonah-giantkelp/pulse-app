@@ -17,7 +17,9 @@ final class EventStore: ObservableObject {
         isLoading = events.isEmpty
         defer { isLoading = false }
         do {
-            events = try await api.myEvents().sorted { $0.date < $1.date }
+            events = try await api.myEvents()
+                .filter { !$0.isConcertsTrackerOnly }
+                .sorted { $0.date < $1.date }
             loadError = nil
         } catch {
             loadError = error.localizedDescription

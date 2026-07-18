@@ -71,8 +71,8 @@ final class ArtistStore: ObservableObject {
     func detailEvents(for artistId: UUID) async -> (local: [Event], other: [Event]) {
         async let localFetch = api.artistEvents(id: artistId)
         async let allFetch = api.artistEvents(id: artistId, scopeAll: true)
-        let local = (try? await localFetch) ?? []
-        let all = (try? await allFetch) ?? []
+        let local = ((try? await localFetch) ?? []).filter { !$0.isConcertsTrackerOnly }
+        let all = ((try? await allFetch) ?? []).filter { !$0.isConcertsTrackerOnly }
         let localIds = Set(local.map(\.id))
         return (local, all.filter { !localIds.contains($0.id) })
     }

@@ -98,18 +98,29 @@ struct Event: Codable, Identifiable, Hashable {
 
     var primaryArtist: EventArtist? { artists?.first }
 
+    /// Ticket links worth showing — concerts_tracker is an aggregator, not a
+    /// ticket shop.
+    var realTicketLinks: [TicketLink] {
+        (ticketLinks ?? []).filter { $0.source != "concerts_tracker" }
+    }
+
+    /// True when concerts_tracker is the only evidence this event exists.
+    var isConcertsTrackerOnly: Bool {
+        source == "concerts_tracker" && realTicketLinks.isEmpty
+    }
+
     var locationLine: String {
         [venue, city, country].compactMap { $0 }.filter { !$0.isEmpty }.joined(separator: " · ")
     }
 
     var bestTicketURL: URL? {
-        if let link = ticketLinks?.first { return URL(string: link.url) }
-        if let url = ticketUrl { return URL(string: url) }
+        if let link = realTicketLinks.first { return URL(string: link.url) }
+        if let url = ticketUrl, source != "concerts_tracker" { return URL(string: url) }
         return nil
     }
 
     var priceLabel: String? {
-        ticketLinks?.compactMap { PulseFormat.price($0) }.first
+        realTicketLinks.compactMap { PulseFormat.price($0) }.first
     }
 }
 

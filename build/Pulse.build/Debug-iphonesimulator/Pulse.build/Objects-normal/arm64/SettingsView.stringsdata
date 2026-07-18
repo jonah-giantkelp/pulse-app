@@ -63,7 +63,7 @@
         "key": "",
         "location": {
           "startingColumn": 20,
-          "startingLine": 136
+          "startingLine": 144
         }
       },
       {
@@ -71,7 +71,7 @@
         "key": "RECIPIENTS",
         "location": {
           "startingColumn": 18,
-          "startingLine": 145
+          "startingLine": 153
         }
       },
       {
@@ -79,7 +79,7 @@
         "key": "MAX %lld RECIPIENTS",
         "location": {
           "startingColumn": 22,
-          "startingLine": 208
+          "startingLine": 216
         }
       },
       {
@@ -87,7 +87,7 @@
         "key": "ADD",
         "location": {
           "startingColumn": 56,
-          "startingLine": 203
+          "startingLine": 211
         }
       },
       {
@@ -95,7 +95,7 @@
         "key": "SAVE",
         "location": {
           "startingColumn": 64,
-          "startingLine": 203
+          "startingLine": 211
         }
       },
       {
@@ -103,7 +103,7 @@
         "key": "MORE LOCATIONS COMING SOON…",
         "location": {
           "startingColumn": 26,
-          "startingLine": 249
+          "startingLine": 257
         }
       },
       {
@@ -111,7 +111,7 @@
         "key": "DELETE ACCOUNT",
         "location": {
           "startingColumn": 26,
-          "startingLine": 270
+          "startingLine": 278
         }
       }
     ]

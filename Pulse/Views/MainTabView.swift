@@ -85,6 +85,7 @@ struct PulseTabBar: View {
                 .buttonStyle(.plain)
             }
         }
+        .padding(.horizontal, 14)
         .padding(.bottom, 2)
         .background(
             Color.pulseSurface

@@ -20,7 +20,6 @@
     "overrides" : {
       "commandLine" : {
         "table" : {
-          "CODE_SIGNING_ALLOWED" : "NO",
           "SDKROOT" : "iphonesimulator26.5"
         }
       },

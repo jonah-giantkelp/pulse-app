@@ -92,8 +92,21 @@ struct SettingsView: View {
             PulseCard {
                 VStack(alignment: .leading, spacing: 14) {
                     alertRow(
-                        title: "EMAIL",
-                        subtitle: "DAILY ROUNDUP TO YOUR INBOX",
+                        title: "PUSH NOTIFICATIONS",
+                        subtitle: "INSTANT ALERTS ON THIS DEVICE",
+                        isOn: Binding(
+                            get: { settings.pushEnabled },
+                            set: { settings.setPush($0) }
+                        )
+                    )
+
+                    Rectangle()
+                        .frame(height: 1)
+                        .foregroundStyle(Color.pulseBorder)
+
+                    alertRow(
+                        title: "DAILY EMAIL",
+                        subtitle: "RECEIVE NEW EVENTS TO YOUR INBOX",
                         isOn: Binding(
                             get: { settings.newsletterEnabled },
                             set: { settings.setNewsletter($0) }
@@ -101,21 +114,16 @@ struct SettingsView: View {
                     )
 
                     if settings.newsletterEnabled {
+                        // Indented under EMAIL with a rail so it reads as its sub-block
                         recipientsEditor
+                            .padding(.leading, 14)
+                            .overlay(
+                                Rectangle()
+                                    .frame(width: 2)
+                                    .foregroundStyle(Color.pulseBorderLight),
+                                alignment: .leading
+                            )
                     }
-
-                    Rectangle()
-                        .frame(height: 1)
-                        .foregroundStyle(Color.pulseBorder)
-
-                    alertRow(
-                        title: "PUSH",
-                        subtitle: "INSTANT ALERTS ON THIS DEVICE",
-                        isOn: Binding(
-                            get: { settings.pushEnabled },
-                            set: { settings.setPush($0) }
-                        )
-                    )
                 }
             }
         }

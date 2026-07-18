@@ -21,10 +21,7 @@ struct FavouritesView: View {
                     if favourites.isLoading {
                         LoadingState()
                     } else if favourites.events.isEmpty {
-                        EmptyState(
-                            icon: "heart",
-                            message: "No liked events yet — tap the heart on any event to save"
-                        )
+                        EmptyState(icon: "heart", message: "No liked events yet")
                     } else {
                         ForEach(favourites.events) { event in
                             EventCard(event: event)

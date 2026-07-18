@@ -17,7 +17,7 @@ struct LoginView: View {
             PulseMark()
                 .stroke(
                     Color.pulseAccent,
-                    style: StrokeStyle(lineWidth: 5, lineCap: .round, lineJoin: .round)
+                    style: StrokeStyle(lineWidth: 4, lineCap: .round, lineJoin: .round)
                 )
                 .frame(width: 96, height: 96)
                 .padding(.bottom, 20)

@@ -61,7 +61,7 @@ struct SearchView: View {
                         } else if hasSearched {
                             EmptyState(icon: "questionmark", message: "No artists found — try the full name")
                         } else {
-                            EmptyState(icon: "magnifyingglass", message: "Search for new artists to track")
+                            EmptyState(icon: "magnifyingglass", message: "Find new artists to track")
                         }
                     } else {
                         ForEach(results) { result in
