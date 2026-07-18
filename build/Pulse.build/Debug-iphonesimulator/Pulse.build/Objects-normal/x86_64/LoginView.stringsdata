@@ -1,0 +1,48 @@
+{
+  "source": "/Users/jonah/Personal/Pulse/pulse-app/Pulse/Views/LoginView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "GIG TRACKER",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 18
+        }
+      },
+      {
+        "comment": "",
+        "key": "CREATE ACCOUNT",
+        "location": {
+          "startingColumn": 44,
+          "startingLine": 49
+        }
+      },
+      {
+        "comment": "",
+        "key": "SIGN IN",
+        "location": {
+          "startingColumn": 63,
+          "startingLine": 49
+        }
+      },
+      {
+        "comment": "",
+        "key": "HAVE AN ACCOUNT? SIGN IN",
+        "location": {
+          "startingColumn": 40,
+          "startingLine": 61
+        }
+      },
+      {
+        "comment": "",
+        "key": "NEW HERE? CREATE ACCOUNT",
+        "location": {
+          "startingColumn": 69,
+          "startingLine": 61
+        }
+      }
+    ]
+  },
+  "version": 1
+}

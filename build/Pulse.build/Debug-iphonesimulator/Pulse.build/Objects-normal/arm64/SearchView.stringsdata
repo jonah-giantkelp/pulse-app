@@ -1,0 +1,56 @@
+{
+  "source": "/Users/jonah/Personal/Pulse/pulse-app/Pulse/Views/SearchView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "SEARCH",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 17
+        }
+      },
+      {
+        "comment": "",
+        "key": "FIND ARTISTS",
+        "location": {
+          "startingColumn": 62,
+          "startingLine": 26
+        }
+      },
+      {
+        "comment": "",
+        "key": "",
+        "location": {
+          "startingColumn": 31,
+          "startingLine": 26
+        }
+      },
+      {
+        "comment": "",
+        "key": "TRACKED ✓",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 196
+        }
+      },
+      {
+        "comment": "",
+        "key": "TRACK",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 177
+        }
+      },
+      {
+        "comment": "",
+        "key": "SYNCING",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 186
+        }
+      }
+    ]
+  },
+  "version": 1
+}

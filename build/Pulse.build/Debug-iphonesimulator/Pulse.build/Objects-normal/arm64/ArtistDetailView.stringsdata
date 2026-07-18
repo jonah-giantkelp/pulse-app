@@ -1,0 +1,40 @@
+{
+  "source": "/Users/jonah/Personal/Pulse/pulse-app/Pulse/Views/ArtistDetailView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "NO UPCOMING EVENTS IN YOUR LOCATIONS",
+        "location": {
+          "startingColumn": 53,
+          "startingLine": 49
+        }
+      },
+      {
+        "comment": "",
+        "key": "NO UPCOMING EVENTS ELSEWHERE",
+        "location": {
+          "startingColumn": 94,
+          "startingLine": 49
+        }
+      },
+      {
+        "comment": "",
+        "key": "UNTRACK ARTIST",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 67
+        }
+      },
+      {
+        "comment": "",
+        "key": "%@ (%lld)",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 113
+        }
+      }
+    ]
+  },
+  "version": 1
+}

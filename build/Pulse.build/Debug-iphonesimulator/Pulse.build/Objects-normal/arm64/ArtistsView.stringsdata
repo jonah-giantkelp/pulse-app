@@ -1,0 +1,40 @@
+{
+  "source": "/Users/jonah/Personal/Pulse/pulse-app/Pulse/Views/ArtistsView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "ARTISTS",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 22
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld TRACKED",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 27
+        }
+      },
+      {
+        "comment": "",
+        "key": "SYNCING",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 98
+        }
+      },
+      {
+        "comment": "",
+        "key": "Untrack",
+        "location": {
+          "startingColumn": 23,
+          "startingLine": 143
+        }
+      }
+    ]
+  },
+  "version": 1
+}

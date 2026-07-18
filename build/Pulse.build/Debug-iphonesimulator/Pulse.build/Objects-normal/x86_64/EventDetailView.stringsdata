@@ -1,0 +1,72 @@
+{
+  "source": "/Users/jonah/Personal/Pulse/pulse-app/Pulse/Views/EventDetailView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "EVENT",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 63
+        }
+      },
+      {
+        "comment": "",
+        "key": "VIA %@",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 186
+        }
+      },
+      {
+        "comment": "",
+        "key": "TICKETS →",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 257
+        }
+      },
+      {
+        "comment": "",
+        "key": "TRACKED ✓",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 285
+        }
+      },
+      {
+        "comment": "",
+        "key": "HIDE FULL LINEUP",
+        "location": {
+          "startingColumn": 39,
+          "startingLine": 298
+        }
+      },
+      {
+        "comment": "",
+        "key": "FULL LINEUP (%lld)",
+        "location": {
+          "startingColumn": 39,
+          "startingLine": 299
+        }
+      },
+      {
+        "comment": "",
+        "key": "IG",
+        "location": {
+          "startingColumn": 53,
+          "startingLine": 350
+        }
+      },
+      {
+        "comment": "",
+        "key": "X",
+        "location": {
+          "startingColumn": 60,
+          "startingLine": 350
+        }
+      }
+    ]
+  },
+  "version": 1
+}

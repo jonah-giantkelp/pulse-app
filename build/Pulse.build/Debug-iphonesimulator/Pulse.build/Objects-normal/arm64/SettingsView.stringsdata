@@ -1,0 +1,72 @@
+{
+  "source": "/Users/jonah/Personal/Pulse/pulse-app/Pulse/Views/SettingsView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "SETTINGS",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 13
+        }
+      },
+      {
+        "comment": "",
+        "key": "SAVE PREFERENCES",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 30
+        }
+      },
+      {
+        "comment": "",
+        "key": "SIGNED IN AS",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 64
+        }
+      },
+      {
+        "comment": "",
+        "key": "SIGN OUT",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 76
+        }
+      },
+      {
+        "comment": "",
+        "key": "DAILY DIGEST",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 92
+        }
+      },
+      {
+        "comment": "",
+        "key": "NEW EVENTS FOR YOUR ARTISTS, EVERY MORNING",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 96
+        }
+      },
+      {
+        "comment": "",
+        "key": "FILTER THE DIGEST TO THESE PLACES — EMPTY MEANS EVERYWHERE",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 112
+        }
+      },
+      {
+        "comment": "",
+        "key": "ADD",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 179
+        }
+      }
+    ]
+  },
+  "version": 1
+}

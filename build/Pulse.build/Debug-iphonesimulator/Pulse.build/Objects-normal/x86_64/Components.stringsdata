@@ -1,0 +1,48 @@
+{
+  "source": "/Users/jonah/Personal/Pulse/pulse-app/Pulse/Views/Components.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "PULSE",
+        "location": {
+          "startingColumn": 14,
+          "startingLine": 9
+        }
+      },
+      {
+        "comment": "",
+        "key": "ACTIVE",
+        "location": {
+          "startingColumn": 23,
+          "startingLine": 23
+        }
+      },
+      {
+        "comment": "",
+        "key": "INACTIVE",
+        "location": {
+          "startingColumn": 34,
+          "startingLine": 23
+        }
+      },
+      {
+        "comment": "",
+        "key": "",
+        "location": {
+          "startingColumn": 29,
+          "startingLine": 200
+        }
+      },
+      {
+        "comment": "",
+        "key": "",
+        "location": {
+          "startingColumn": 27,
+          "startingLine": 202
+        }
+      }
+    ]
+  },
+  "version": 1
+}

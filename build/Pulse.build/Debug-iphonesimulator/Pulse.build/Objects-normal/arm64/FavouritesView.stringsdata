@@ -1,0 +1,24 @@
+{
+  "source": "/Users/jonah/Personal/Pulse/pulse-app/Pulse/Views/FavouritesView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "FAVOURITES",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 9
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 14
+        }
+      }
+    ]
+  },
+  "version": 1
+}
