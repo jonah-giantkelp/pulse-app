@@ -14,6 +14,14 @@ struct LoginView: View {
         VStack(spacing: 0) {
             Spacer()
 
+            PulseMark()
+                .stroke(
+                    Color.pulseAccent,
+                    style: StrokeStyle(lineWidth: 5, lineCap: .round, lineJoin: .round)
+                )
+                .frame(width: 96, height: 96)
+                .padding(.bottom, 20)
+
             PulseWordmark(size: 32)
             Text("GIG TRACKER")
                 .font(.mono(11))

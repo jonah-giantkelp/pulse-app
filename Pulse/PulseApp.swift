@@ -1,8 +1,27 @@
 import SwiftUI
 
+/// Relays the APNs device token to whoever cares (SettingsStore).
+final class AppDelegate: NSObject, UIApplicationDelegate {
+    func application(
+        _ application: UIApplication,
+        didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data
+    ) {
+        let hex = deviceToken.map { String(format: "%02x", $0) }.joined()
+        NotificationCenter.default.post(name: .pulsePushToken, object: hex)
+    }
+
+    func application(
+        _ application: UIApplication,
+        didFailToRegisterForRemoteNotificationsWithError error: Error
+    ) {
+        print("Push registration failed: \(error.localizedDescription)")
+    }
+}
+
 @main
 @MainActor
 struct PulseApp: App {
+    @UIApplicationDelegateAdaptor(AppDelegate.self) private var appDelegate
     @StateObject private var auth: AuthManager
     @StateObject private var artists: ArtistStore
     @StateObject private var events: EventStore

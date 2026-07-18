@@ -7,7 +7,7 @@
         "key": "GIG TRACKER",
         "location": {
           "startingColumn": 18,
-          "startingLine": 18
+          "startingLine": 26
         }
       },
       {
@@ -15,7 +15,7 @@
         "key": "CREATE ACCOUNT",
         "location": {
           "startingColumn": 44,
-          "startingLine": 49
+          "startingLine": 57
         }
       },
       {
@@ -23,7 +23,7 @@
         "key": "SIGN IN",
         "location": {
           "startingColumn": 63,
-          "startingLine": 49
+          "startingLine": 57
         }
       },
       {
@@ -31,7 +31,7 @@
         "key": "HAVE AN ACCOUNT? SIGN IN",
         "location": {
           "startingColumn": 40,
-          "startingLine": 61
+          "startingLine": 69
         }
       },
       {
@@ -39,7 +39,7 @@
         "key": "NEW HERE? CREATE ACCOUNT",
         "location": {
           "startingColumn": 69,
-          "startingLine": 61
+          "startingLine": 69
         }
       }
     ]

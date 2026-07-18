@@ -22,6 +22,7 @@ extension Color {
     static let pulseTextMuted = Color(hex: 0x888888)
     static let pulseTextFaint = Color(hex: 0x666666)
     static let pulseDanger = Color(hex: 0xFF5C5C)
+    static let pulseAmber = Color(hex: 0xE8B84B)
 }
 
 extension Font {

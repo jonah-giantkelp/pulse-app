@@ -40,7 +40,8 @@ final class APIClient {
     func addArtist(musicbrainzId: String, name: String, city: String? = nil) async throws -> AddArtistResponse {
         var body: [String: Any] = ["musicbrainz_id": musicbrainzId, "name": name]
         if let city { body["city"] = city }
-        return try await request("POST", "/artists", body: body)
+        // New artists get platform resolution + an initial event sync — slow
+        return try await request("POST", "/artists", body: body, timeout: 180)
     }
 
     func trackedArtists() async throws -> [UserArtist] {
@@ -80,30 +81,43 @@ final class APIClient {
     }
 
     func updateEmailPreferences(
-        email: String?, digestEnabled: Bool, cities: [String], countries: [String]
+        digestEnabled: Bool, recipients: [String], pushEnabled: Bool
     ) async throws -> EmailPreferences {
-        var body: [String: Any] = [
+        try await request("PUT", "/me/email-preferences", body: [
             "digest_enabled": digestEnabled,
-            "default_cities": cities,
-            "default_countries": countries,
-        ]
-        if let email, !email.isEmpty { body["email"] = email }
-        return try await request("PUT", "/me/email-preferences", body: body)
+            "recipients": recipients,
+            "push_enabled": pushEnabled,
+        ])
+    }
+
+    func registerPushToken(_ token: String) async throws {
+        let _: StatusResponse = try await request(
+            "POST", "/me/push-token", body: ["device_token": token, "platform": "ios"]
+        )
+    }
+
+    func deletePushToken(_ token: String) async throws {
+        let _: StatusResponse = try await request("DELETE", "/me/push-token/\(token)")
+    }
+
+    func deleteAccount() async throws {
+        let _: StatusResponse = try await request("DELETE", "/me/account")
     }
 
     // MARK: - Core request
 
     private func request<T: Decodable>(
         _ method: String, _ path: String,
-        query: [URLQueryItem] = [], body: [String: Any]? = nil
+        query: [URLQueryItem] = [], body: [String: Any]? = nil,
+        timeout: TimeInterval = 60
     ) async throws -> T {
-        let data = try await send(method, path, query: query, body: body, retryOn401: true)
+        let data = try await send(method, path, query: query, body: body, timeout: timeout, retryOn401: true)
         return try decoder.decode(T.self, from: data)
     }
 
     private func send(
         _ method: String, _ path: String,
-        query: [URLQueryItem], body: [String: Any]?, retryOn401: Bool
+        query: [URLQueryItem], body: [String: Any]?, timeout: TimeInterval, retryOn401: Bool
     ) async throws -> Data {
         var components = URLComponents(
             url: Config.apiBaseURL.appendingPathComponent(path),
@@ -113,7 +127,7 @@ final class APIClient {
 
         var request = URLRequest(url: components.url!)
         request.httpMethod = method
-        request.timeoutInterval = 60
+        request.timeoutInterval = timeout
         let token = try await auth.validAccessToken()
         request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         if let body {
@@ -126,7 +140,7 @@ final class APIClient {
 
         if status == 401 && retryOn401 {
             try await auth.refreshSession()
-            return try await send(method, path, query: query, body: body, retryOn401: false)
+            return try await send(method, path, query: query, body: body, timeout: timeout, retryOn401: false)
         }
         guard (200..<300).contains(status) else {
             let json = try? JSONSerialization.jsonObject(with: data) as? [String: Any]

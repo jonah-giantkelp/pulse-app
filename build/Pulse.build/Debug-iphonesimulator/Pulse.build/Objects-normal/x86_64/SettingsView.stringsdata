@@ -4,66 +4,114 @@
     "Localizable": [
       {
         "comment": "",
+        "key": "Delete account?",
+        "location": {
+          "startingColumn": 16,
+          "startingLine": 45
+        }
+      },
+      {
+        "comment": "",
         "key": "SETTINGS",
         "location": {
           "startingColumn": 22,
-          "startingLine": 13
+          "startingLine": 15
         }
       },
       {
         "comment": "",
-        "key": "SAVE PREFERENCES",
+        "key": "Delete",
         "location": {
-          "startingColumn": 30,
-          "startingLine": 30
+          "startingColumn": 20,
+          "startingLine": 46
         }
       },
       {
         "comment": "",
-        "key": "SIGNED IN AS",
+        "key": "Cancel",
         "location": {
-          "startingColumn": 30,
-          "startingLine": 64
+          "startingColumn": 20,
+          "startingLine": 55
+        }
+      },
+      {
+        "comment": "",
+        "key": "This permanently deletes your account, tracked artists and favourites. It cannot be undone.",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 57
+        }
+      },
+      {
+        "comment": "",
+        "key": "LOGGED IN AS",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 67
         }
       },
       {
         "comment": "",
         "key": "SIGN OUT",
         "location": {
-          "startingColumn": 30,
-          "startingLine": 76
-        }
-      },
-      {
-        "comment": "",
-        "key": "DAILY DIGEST",
-        "location": {
-          "startingColumn": 34,
-          "startingLine": 92
-        }
-      },
-      {
-        "comment": "",
-        "key": "NEW EVENTS FOR YOUR ARTISTS, EVERY MORNING",
-        "location": {
-          "startingColumn": 34,
-          "startingLine": 96
-        }
-      },
-      {
-        "comment": "",
-        "key": "FILTER THE DIGEST TO THESE PLACES — EMPTY MEANS EVERYWHERE",
-        "location": {
           "startingColumn": 26,
-          "startingLine": 112
+          "startingLine": 80
+        }
+      },
+      {
+        "comment": "",
+        "key": "",
+        "location": {
+          "startingColumn": 20,
+          "startingLine": 136
+        }
+      },
+      {
+        "comment": "",
+        "key": "RECIPIENTS",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 145
+        }
+      },
+      {
+        "comment": "",
+        "key": "MAX %lld RECIPIENTS",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 208
         }
       },
       {
         "comment": "",
         "key": "ADD",
         "location": {
+          "startingColumn": 56,
+          "startingLine": 203
+        }
+      },
+      {
+        "comment": "",
+        "key": "SAVE",
+        "location": {
+          "startingColumn": 64,
+          "startingLine": 203
+        }
+      },
+      {
+        "comment": "",
+        "key": "MORE LOCATIONS COMING SOON…",
+        "location": {
           "startingColumn": 26,
-          "startingLine": 179
+          "startingLine": 249
+        }
+      },
+      {
+        "comment": "",
+        "key": "DELETE ACCOUNT",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 270
         }
       }
     ]

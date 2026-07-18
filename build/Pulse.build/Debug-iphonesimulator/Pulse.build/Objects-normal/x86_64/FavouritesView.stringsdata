@@ -4,18 +4,10 @@
     "Localizable": [
       {
         "comment": "",
-        "key": "FAVOURITES",
+        "key": "LIKED EVENTS",
         "location": {
           "startingColumn": 22,
           "startingLine": 9
-        }
-      },
-      {
-        "comment": "",
-        "key": "%lld",
-        "location": {
-          "startingColumn": 22,
-          "startingLine": 14
         }
       }
     ]

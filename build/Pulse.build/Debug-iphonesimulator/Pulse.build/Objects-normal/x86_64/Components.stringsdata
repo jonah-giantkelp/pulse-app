@@ -7,7 +7,7 @@
         "key": "PULSE",
         "location": {
           "startingColumn": 14,
-          "startingLine": 9
+          "startingLine": 32
         }
       },
       {
@@ -15,7 +15,7 @@
         "key": "ACTIVE",
         "location": {
           "startingColumn": 23,
-          "startingLine": 23
+          "startingLine": 46
         }
       },
       {
@@ -23,7 +23,7 @@
         "key": "INACTIVE",
         "location": {
           "startingColumn": 34,
-          "startingLine": 23
+          "startingLine": 46
         }
       },
       {
@@ -31,7 +31,7 @@
         "key": "",
         "location": {
           "startingColumn": 29,
-          "startingLine": 200
+          "startingLine": 226
         }
       },
       {
@@ -39,7 +39,7 @@
         "key": "",
         "location": {
           "startingColumn": 27,
-          "startingLine": 202
+          "startingLine": 228
         }
       }
     ]

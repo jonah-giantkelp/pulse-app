@@ -93,18 +93,19 @@ struct ArtistsView: View {
                     // Sits where the ACTIVE/INACTIVE pill normally goes
                     HStack(spacing: 5) {
                         ProgressView()
-                            .tint(Color.pulseAccent)
+                            .tint(Color.pulseAmber)
                             .scaleEffect(0.6)
+                            .frame(width: 10, height: 10)
                         Text("SYNCING")
                             .font(.mono(9, .bold))
                             .kerning(1)
-                            .foregroundStyle(Color.pulseAccent)
+                            .foregroundStyle(Color.pulseAmber)
                     }
                     .padding(.horizontal, 8)
                     .padding(.vertical, 4)
                     .overlay(
                         RoundedRectangle(cornerRadius: 4)
-                            .stroke(Color.pulseAccent, lineWidth: 1)
+                            .stroke(Color.pulseAmber, lineWidth: 1)
                     )
                 }
             }

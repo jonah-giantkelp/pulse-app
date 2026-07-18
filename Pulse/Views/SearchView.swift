@@ -178,20 +178,23 @@ struct SearchResultCard: View {
             }
             .buttonStyle(OutlineButtonStyle())
         case .syncing:
-            // Same geometry as the TRACK button — it changes colour and buffers
+            // Same geometry as the TRACK button — outline and text go amber
             HStack(spacing: 6) {
                 ProgressView()
-                    .tint(Color.pulseBg)
+                    .tint(Color.pulseAmber)
                     .scaleEffect(0.7)
+                    .frame(width: 12, height: 12) // scaleEffect doesn't shrink layout
                 Text("SYNCING")
                     .font(.mono(12, .bold))
                     .kerning(1.5)
             }
-            .foregroundStyle(Color.pulseBg)
+            .foregroundStyle(Color.pulseAmber)
             .padding(.horizontal, 14)
             .padding(.vertical, 8)
-            .background(Color.pulseAccent.opacity(0.55))
-            .clipShape(RoundedRectangle(cornerRadius: 6))
+            .overlay(
+                RoundedRectangle(cornerRadius: 6)
+                    .stroke(Color.pulseAmber, lineWidth: 1)
+            )
         case .tracked:
             Text("TRACKED ✓")
                 .font(.mono(10, .bold))

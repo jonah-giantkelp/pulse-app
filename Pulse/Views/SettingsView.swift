@@ -4,208 +4,277 @@ struct SettingsView: View {
     @EnvironmentObject private var auth: AuthManager
     @EnvironmentObject private var settings: SettingsStore
 
-    @State private var cityInput = ""
-    @State private var countryInput = ""
+    @State private var recipientInput = ""
+    @State private var editingRecipient: String?
+    @State private var showDeleteConfirm = false
+    @State private var isDeletingAccount = false
 
     var body: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: 24) {
+        VStack(spacing: 0) {
+            HStack {
                 Text("SETTINGS")
                     .font(.mono(16, .bold))
                     .kerning(3)
                     .foregroundStyle(Color.pulseAccent)
+                Spacer()
+            }
+            .padding(.horizontal, 16)
+            .padding(.top, 8)
+            .padding(.bottom, 12)
 
-                accountSection
-                digestSection
-                locationSection
+            ScrollView {
+                VStack(alignment: .leading, spacing: 24) {
+                    accountCard
+                    alertsSection
+                    locationsSection
 
-                Button {
-                    Task { await settings.save() }
-                } label: {
-                    if settings.isSaving {
-                        ProgressView()
-                            .tint(Color.pulseBg)
-                            .frame(maxWidth: .infinity)
-                    } else {
-                        Text("SAVE PREFERENCES")
+                    if let error = settings.errorMessage {
+                        Text(error.uppercased())
+                            .font(.mono(10))
+                            .foregroundStyle(Color.pulseDanger)
                             .frame(maxWidth: .infinity)
                     }
-                }
-                .buttonStyle(AccentButtonStyle())
-                .disabled(settings.isSaving)
 
-                if let status = settings.statusMessage {
-                    Text(status)
-                        .font(.mono(11, .bold))
-                        .kerning(2)
-                        .foregroundStyle(Color.pulseAccent)
-                        .frame(maxWidth: .infinity)
+                    dangerSection
                 }
-                if let error = settings.errorMessage {
-                    Text(error.uppercased())
-                        .font(.mono(11))
-                        .foregroundStyle(Color.pulseDanger)
-                        .frame(maxWidth: .infinity)
-                }
-
-                aboutSection
+                .padding(.horizontal, 16)
+                .padding(.bottom, 24)
             }
-            .padding(16)
         }
         .task { await settings.load() }
-    }
-
-    private var accountSection: some View {
-        VStack(alignment: .leading, spacing: 12) {
-            PulseSectionHeader(text: "Account")
-            PulseCard {
-                HStack {
-                    VStack(alignment: .leading, spacing: 4) {
-                        Text("SIGNED IN AS")
-                            .font(.mono(9))
-                            .kerning(1)
-                            .foregroundStyle(Color.pulseTextFaint)
-                        Text(auth.email ?? "—")
-                            .font(.mono(13))
-                            .foregroundStyle(.white)
-                    }
-                    Spacer()
-                    Button {
+        .alert("Delete account?", isPresented: $showDeleteConfirm) {
+            Button("Delete", role: .destructive) {
+                Task {
+                    isDeletingAccount = true
+                    if await settings.deleteAccount() {
                         auth.signOut()
-                    } label: {
-                        Text("SIGN OUT")
                     }
-                    .buttonStyle(OutlineButtonStyle(color: .pulseDanger))
+                    isDeletingAccount = false
                 }
             }
+            Button("Cancel", role: .cancel) {}
+        } message: {
+            Text("This permanently deletes your account, tracked artists and favourites. It cannot be undone.")
         }
     }
 
-    private var digestSection: some View {
-        VStack(alignment: .leading, spacing: 12) {
-            PulseSectionHeader(text: "Email digest")
-            PulseCard {
-                VStack(alignment: .leading, spacing: 14) {
-                    PulseTextField(placeholder: "DIGEST EMAIL", text: $settings.email, keyboard: .emailAddress)
-                    Toggle(isOn: $settings.digestEnabled) {
-                        VStack(alignment: .leading, spacing: 3) {
-                            Text("DAILY DIGEST")
-                                .font(.mono(12, .bold))
-                                .kerning(1)
-                                .foregroundStyle(.white)
-                            Text("NEW EVENTS FOR YOUR ARTISTS, EVERY MORNING")
-                                .font(.mono(9))
-                                .foregroundStyle(Color.pulseTextFaint)
-                        }
-                    }
-                    .tint(Color.pulseAccent)
-                }
-            }
-        }
-    }
+    // MARK: - Account
 
-    private var locationSection: some View {
-        VStack(alignment: .leading, spacing: 12) {
-            PulseSectionHeader(text: "Locations")
-            PulseCard {
-                VStack(alignment: .leading, spacing: 14) {
-                    Text("FILTER THE DIGEST TO THESE PLACES — EMPTY MEANS EVERYWHERE")
+    private var accountCard: some View {
+        PulseCard {
+            HStack {
+                VStack(alignment: .leading, spacing: 4) {
+                    Text("LOGGED IN AS")
                         .font(.mono(9))
+                        .kerning(1)
                         .foregroundStyle(Color.pulseTextFaint)
+                    Text(auth.email ?? "—")
+                        .font(.mono(13))
+                        .foregroundStyle(.white)
+                        .lineLimit(1)
+                }
+                Spacer()
+                Button {
+                    auth.signOut()
+                } label: {
+                    Text("SIGN OUT")
+                }
+                .buttonStyle(OutlineButtonStyle(color: .pulseTextMuted))
+            }
+        }
+    }
 
-                    chipEditor(
-                        title: "CITIES",
-                        placeholder: "ADD CITY",
-                        items: $settings.cities,
-                        input: $cityInput
-                    ) { $0 }
+    // MARK: - Event alerts (email + push)
 
-                    chipEditor(
-                        title: "COUNTRIES (ISO CODES)",
-                        placeholder: "ADD COUNTRY E.G. GB",
-                        items: $settings.countries,
-                        input: $countryInput
-                    ) { $0.uppercased() }
+    private var alertsSection: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            PulseSectionHeader(text: "Event alerts")
+            PulseCard {
+                VStack(alignment: .leading, spacing: 14) {
+                    alertRow(
+                        title: "EMAIL",
+                        subtitle: "DAILY ROUNDUP TO YOUR INBOX",
+                        isOn: Binding(
+                            get: { settings.newsletterEnabled },
+                            set: { settings.setNewsletter($0) }
+                        )
+                    )
+
+                    if settings.newsletterEnabled {
+                        recipientsEditor
+                    }
+
+                    Rectangle()
+                        .frame(height: 1)
+                        .foregroundStyle(Color.pulseBorder)
+
+                    alertRow(
+                        title: "PUSH",
+                        subtitle: "INSTANT ALERTS ON THIS DEVICE",
+                        isOn: Binding(
+                            get: { settings.pushEnabled },
+                            set: { settings.setPush($0) }
+                        )
+                    )
                 }
             }
         }
     }
 
-    private func chipEditor(
-        title: String, placeholder: String,
-        items: Binding<[String]>, input: Binding<String>,
-        normalise: @escaping (String) -> String
-    ) -> some View {
+    private func alertRow(title: String, subtitle: String, isOn: Binding<Bool>) -> some View {
+        HStack {
+            VStack(alignment: .leading, spacing: 3) {
+                Text(title)
+                    .font(.mono(12, .bold))
+                    .kerning(1)
+                    .foregroundStyle(.white)
+                Text(subtitle)
+                    .font(.mono(9))
+                    .foregroundStyle(Color.pulseTextFaint)
+            }
+            Spacer()
+            Toggle("", isOn: isOn)
+                .labelsHidden()
+                .tint(Color.pulseAccent)
+                .scaleEffect(0.75, anchor: .trailing)
+        }
+    }
+
+    private var recipientsEditor: some View {
         VStack(alignment: .leading, spacing: 8) {
-            Text(title)
+            Text("RECIPIENTS")
                 .font(.mono(10, .bold))
                 .kerning(1)
                 .foregroundStyle(Color.pulseTextMuted)
 
-            if !items.wrappedValue.isEmpty {
-                ScrollView(.horizontal, showsIndicators: false) {
-                    HStack(spacing: 6) {
-                        ForEach(items.wrappedValue, id: \.self) { item in
-                            HStack(spacing: 5) {
-                                Text(item)
-                                    .font(.mono(11))
-                                    .foregroundStyle(.white)
-                                Image(systemName: "xmark")
-                                    .font(.system(size: 8, weight: .bold))
-                                    .foregroundStyle(Color.pulseTextMuted)
-                            }
-                            .padding(.horizontal, 9)
-                            .padding(.vertical, 5)
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 5)
-                                    .stroke(Color.pulseBorderLight, lineWidth: 1)
-                            )
-                            .onTapGesture {
-                                items.wrappedValue.removeAll { $0 == item }
-                            }
-                        }
+            ForEach(settings.recipients, id: \.self) { email in
+                HStack(spacing: 14) {
+                    Text(email)
+                        .font(.mono(13))
+                        .foregroundStyle(editingRecipient == email ? Color.pulseAmber : .white)
+                        .lineLimit(1)
+                    Spacer()
+                    Button {
+                        editingRecipient = email
+                        recipientInput = email
+                    } label: {
+                        Image(systemName: "pencil")
+                            .font(.system(size: 15))
+                            .foregroundStyle(Color.pulseTextMuted)
+                            .frame(width: 28, height: 28)
+                            .contentShape(Rectangle())
                     }
+                    .buttonStyle(.plain)
+                    Button {
+                        if editingRecipient == email {
+                            editingRecipient = nil
+                            recipientInput = ""
+                        }
+                        settings.removeRecipient(email)
+                    } label: {
+                        Image(systemName: "xmark")
+                            .font(.system(size: 13, weight: .bold))
+                            .foregroundStyle(Color.pulseTextFaint)
+                            .frame(width: 28, height: 28)
+                            .contentShape(Rectangle())
+                    }
+                    .buttonStyle(.plain)
                 }
+                .padding(.vertical, 4)
+                .overlay(
+                    Rectangle()
+                        .frame(height: 1)
+                        .foregroundStyle(Color.pulseBorder),
+                    alignment: .bottom
+                )
             }
 
-            HStack(spacing: 8) {
-                PulseTextField(placeholder: placeholder, text: input)
-                Button {
-                    let value = normalise(input.wrappedValue.trimmingCharacters(in: .whitespaces))
-                    guard !value.isEmpty, !items.wrappedValue.contains(value) else { return }
-                    items.wrappedValue.append(value)
-                    input.wrappedValue = ""
-                } label: {
-                    Text("ADD")
+            if editingRecipient != nil || settings.recipients.count < SettingsStore.maxRecipients {
+                HStack(spacing: 8) {
+                    PulseTextField(
+                        placeholder: editingRecipient == nil ? "ADD RECIPIENT" : "EDIT RECIPIENT",
+                        text: $recipientInput,
+                        keyboard: .emailAddress,
+                        compact: true
+                    )
+                    Button {
+                        commitRecipient()
+                    } label: {
+                        Text(editingRecipient == nil ? "ADD" : "SAVE")
+                    }
+                    .buttonStyle(OutlineButtonStyle())
                 }
-                .buttonStyle(OutlineButtonStyle())
+            } else {
+                Text("MAX \(SettingsStore.maxRecipients) RECIPIENTS")
+                    .font(.mono(9))
+                    .kerning(1)
+                    .foregroundStyle(Color.pulseTextFaint)
             }
         }
     }
 
-    private var aboutSection: some View {
+    private func commitRecipient() {
+        let value = recipientInput.trimmingCharacters(in: .whitespaces)
+        guard !value.isEmpty else { return }
+        if let original = editingRecipient {
+            settings.updateRecipient(original, to: value)
+            editingRecipient = nil
+        } else {
+            settings.addRecipient(value)
+        }
+        recipientInput = ""
+    }
+
+    // MARK: - Locations (display-only for now)
+
+    private var locationsSection: some View {
         VStack(alignment: .leading, spacing: 12) {
-            PulseSectionHeader(text: "About")
+            PulseSectionHeader(text: "Locations")
             PulseCard {
-                VStack(alignment: .leading, spacing: 8) {
-                    infoRow("VERSION", Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "1.0")
-                    infoRow("API", Config.apiBaseURL.absoluteString)
+                VStack(alignment: .leading, spacing: 10) {
+                    HStack(spacing: 6) {
+                        ForEach(settings.cities.isEmpty ? ["London"] : settings.cities, id: \.self) { city in
+                            Text(city.capitalized)
+                                .font(.mono(11))
+                                .foregroundStyle(.white)
+                                .padding(.horizontal, 9)
+                                .padding(.vertical, 5)
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 5)
+                                        .stroke(Color.pulseBorderLight, lineWidth: 1)
+                                )
+                        }
+                        Spacer()
+                    }
+                    Text("MORE LOCATIONS COMING SOON…")
+                        .font(.mono(9))
+                        .kerning(1)
+                        .foregroundStyle(Color.pulseTextFaint)
                 }
             }
         }
     }
 
-    private func infoRow(_ label: String, _ value: String) -> some View {
-        HStack {
-            Text(label)
-                .font(.mono(10))
-                .kerning(1)
-                .foregroundStyle(Color.pulseTextFaint)
-            Spacer()
-            Text(value)
-                .font(.mono(10))
-                .foregroundStyle(Color.pulseTextMuted)
-                .lineLimit(1)
+    // MARK: - Danger zone
+
+    private var dangerSection: some View {
+        VStack(spacing: 16) {
+            Button {
+                showDeleteConfirm = true
+            } label: {
+                if isDeletingAccount {
+                    ProgressView()
+                        .tint(Color.pulseDanger)
+                        .frame(maxWidth: .infinity)
+                } else {
+                    Text("DELETE ACCOUNT")
+                        .frame(maxWidth: .infinity)
+                }
+            }
+            .buttonStyle(OutlineButtonStyle(color: .pulseDanger))
+            .disabled(isDeletingAccount)
         }
+        .padding(.top, 8)
     }
+
 }

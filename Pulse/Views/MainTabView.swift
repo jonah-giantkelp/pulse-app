@@ -2,7 +2,7 @@ import SwiftUI
 
 enum PulseTab: String, CaseIterable {
     case concerts = "CONCERTS"
-    case favourites = "FAVOURITES"
+    case favourites = "LIKED"
     case artists = "ARTISTS"
     case search = "SEARCH"
     case settings = "SETTINGS"

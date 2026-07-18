@@ -346,6 +346,8 @@ extern "C" {
 #if __has_warning("-Watimport-in-framework-header")
 #pragma clang diagnostic ignored "-Watimport-in-framework-header"
 #endif
+@import ObjectiveC;
+@import UIKit;
 #endif
 
 #endif // defined(__OBJC__)
@@ -367,6 +369,16 @@ extern "C" {
 #endif
 
 #if defined(__OBJC__)
+
+@class UIApplication;
+@class NSData;
+/// Relays the APNs device token to whoever cares (SettingsStore).
+SWIFT_CLASS("_TtC5Pulse11AppDelegate")
+@interface AppDelegate : NSObject <UIApplicationDelegate>
+- (void)application:(UIApplication * _Nonnull)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData * _Nonnull)deviceToken;
+- (void)application:(UIApplication * _Nonnull)application didFailToRegisterForRemoteNotificationsWithError:(NSError * _Nonnull)error;
+- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
+@end
 
 #endif // defined(__OBJC__)
 #if __has_attribute(external_source_symbol)
@@ -724,6 +736,8 @@ extern "C" {
 #if __has_warning("-Watimport-in-framework-header")
 #pragma clang diagnostic ignored "-Watimport-in-framework-header"
 #endif
+@import ObjectiveC;
+@import UIKit;
 #endif
 
 #endif // defined(__OBJC__)
@@ -745,6 +759,16 @@ extern "C" {
 #endif
 
 #if defined(__OBJC__)
+
+@class UIApplication;
+@class NSData;
+/// Relays the APNs device token to whoever cares (SettingsStore).
+SWIFT_CLASS("_TtC5Pulse11AppDelegate")
+@interface AppDelegate : NSObject <UIApplicationDelegate>
+- (void)application:(UIApplication * _Nonnull)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData * _Nonnull)deviceToken;
+- (void)application:(UIApplication * _Nonnull)application didFailToRegisterForRemoteNotificationsWithError:(NSError * _Nonnull)error;
+- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
+@end
 
 #endif // defined(__OBJC__)
 #if __has_attribute(external_source_symbol)

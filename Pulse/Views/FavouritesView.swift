@@ -6,14 +6,11 @@ struct FavouritesView: View {
     var body: some View {
         VStack(spacing: 0) {
             HStack {
-                Text("FAVOURITES")
+                Text("LIKED EVENTS")
                     .font(.mono(16, .bold))
                     .kerning(3)
                     .foregroundStyle(Color.pulseAccent)
                 Spacer()
-                Text("\(favourites.events.count)")
-                    .font(.mono(12, .bold))
-                    .foregroundStyle(Color.pulseTextMuted)
             }
             .padding(.horizontal, 16)
             .padding(.top, 8)
@@ -26,7 +23,7 @@ struct FavouritesView: View {
                     } else if favourites.events.isEmpty {
                         EmptyState(
                             icon: "heart",
-                            message: "No favourites yet — tap the heart on any gig"
+                            message: "No liked events yet — tap the heart on any event to save"
                         )
                     } else {
                         ForEach(favourites.events) { event in

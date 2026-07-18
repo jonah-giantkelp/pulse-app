@@ -1,5 +1,28 @@
 import SwiftUI
 
+// MARK: - Pulse mark (same geometry as the app icon)
+
+struct PulseMark: Shape {
+    func path(in rect: CGRect) -> Path {
+        // Normalised from the 1024pt icon artwork
+        let pts: [(CGFloat, CGFloat)] = [
+            (110, 512), (300, 512),
+            (356, 446), (424, 610),
+            (492, 300), (560, 724),
+            (628, 430), (688, 566),
+            (740, 512), (914, 512),
+        ]
+        var path = Path()
+        let scaleX = rect.width / 1024
+        let scaleY = rect.height / 1024
+        path.move(to: CGPoint(x: pts[0].0 * scaleX, y: pts[0].1 * scaleY))
+        for p in pts.dropFirst() {
+            path.addLine(to: CGPoint(x: p.0 * scaleX, y: p.1 * scaleY))
+        }
+        return path
+    }
+}
+
 // MARK: - Wordmark
 
 struct PulseWordmark: View {
@@ -193,6 +216,9 @@ struct PulseTextField: View {
     @Binding var text: String
     var secure = false
     var keyboard: UIKeyboardType = .default
+    var compact = false
+
+    private var fontSize: CGFloat { compact ? 12 : 14 }
 
     var body: some View {
         Group {
@@ -205,9 +231,9 @@ struct PulseTextField: View {
                     .autocorrectionDisabled()
             }
         }
-        .font(.mono(14))
+        .font(.mono(fontSize))
         .foregroundStyle(.white)
-        .padding(12)
+        .padding(compact ? 8 : 12)
         .background(Color.pulseSurface)
         .overlay(
             RoundedRectangle(cornerRadius: 6)
@@ -217,7 +243,7 @@ struct PulseTextField: View {
 
     private var prompt: Text {
         Text(placeholder)
-            .font(.mono(14))
+            .font(.mono(fontSize))
             .foregroundStyle(Color.pulseTextFaint)
     }
 }

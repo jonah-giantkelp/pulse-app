@@ -115,7 +115,9 @@ struct Event: Codable, Identifiable, Hashable {
 
 struct EmailPreferences: Codable {
     var email: String?
+    var recipients: [String]?
     var digestEnabled: Bool
+    var pushEnabled: Bool?
     var defaultCities: [String]
     var defaultCountries: [String]
 }
