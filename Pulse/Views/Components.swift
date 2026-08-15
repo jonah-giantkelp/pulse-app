@@ -29,13 +29,20 @@ struct PulseMark: Shape {
 
 struct PulseWordmark: View {
     var size: CGFloat = 24
+    var text: String = "PULSE"
+    var kernScale: CGFloat = 0.6
 
     var body: some View {
-        Text("PULSE")
-            .font(.mono(size, .bold))
-            .kerning(size * 0.6)
-            .foregroundStyle(Color.pulseAccent)
-            .padding(.leading, size * 0.6) // optically balance the trailing kern
+        // Words rendered separately: kerning a space doubles the gap (kern + space width).
+        HStack(spacing: size * 0.25) {
+            ForEach(Array(text.split(separator: " ").enumerated()), id: \.offset) { _, word in
+                Text(word)
+                    .font(.mono(size, .bold))
+                    .kerning(size * kernScale)
+            }
+        }
+        .foregroundStyle(Color.pulseAccent)
+        .padding(.leading, size * kernScale) // optically balance the trailing kern
     }
 }
 
@@ -329,7 +336,7 @@ struct EventCard: View {
 
     var body: some View {
         PulseCard {
-            HStack(alignment: .top, spacing: 12) {
+            HStack(alignment: .center, spacing: 12) {
                 if showArtists, let artists = event.artists, !artists.isEmpty {
                     StackedAvatars(artists: artists)
                 }
@@ -354,8 +361,10 @@ struct EventCard: View {
                         favourites.toggle(event)
                     } label: {
                         Image(systemName: favourites.contains(event) ? "heart.fill" : "heart")
-                            .font(.system(size: 15))
+                            .font(.system(size: 19))
                             .foregroundStyle(favourites.contains(event) ? Color.pulseAccent : Color.pulseTextFaint)
+                            .frame(width: 28, height: 28)
+                            .contentShape(Rectangle())
                     }
                     .buttonStyle(.plain)
                     if showDate {

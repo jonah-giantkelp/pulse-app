@@ -65,11 +65,15 @@ struct ArtistsView: View {
                             .padding(.trailing, useIndex ? 18 : 0)
                             .padding(.bottom, 24)
                         }
-                        .refreshable { await artists.load() }
+                        // Unstructured task: see ConcertsView — refresh must
+                        // survive the re-render pull-to-refresh triggers.
+                        .refreshable { await Task { await artists.load() }.value }
 
                         if useIndex {
                             AlphabetIndex(letters: sections.map(\.letter)) { letter in
-                                withAnimation { proxy.scrollTo(letter, anchor: .top) }
+                                // No animation: scrubbing fires this per letter
+                                // and animated jumps lag behind the finger.
+                                proxy.scrollTo(letter, anchor: .top)
                             }
                         }
                     }
@@ -147,21 +151,42 @@ struct ArtistsView: View {
     }
 }
 
+/// Contact-book style rail: tap a letter or hold and drag to scrub through
+/// the alphabet.
 struct AlphabetIndex: View {
     let letters: [String]
-    let onTap: (String) -> Void
+    let onSelect: (String) -> Void
+
+    @State private var scrubbedLetter: String?
+
+    private let rowHeight: CGFloat = 14
+    private let rowSpacing: CGFloat = 3
 
     var body: some View {
-        VStack(spacing: 3) {
+        VStack(spacing: rowSpacing) {
             ForEach(letters, id: \.self) { letter in
                 Text(letter)
                     .font(.mono(9, .bold))
                     .foregroundStyle(Color.pulseAccent)
-                    .frame(width: 16, height: 14)
-                    .contentShape(Rectangle())
-                    .onTapGesture { onTap(letter) }
+                    .frame(width: 16, height: rowHeight)
             }
         }
         .padding(.trailing, 2)
+        .contentShape(Rectangle())
+        // minimumDistance 0 makes this cover plain taps too
+        .gesture(
+            DragGesture(minimumDistance: 0)
+                .onChanged { value in
+                    let step = rowHeight + rowSpacing
+                    let index = Int((value.location.y + rowSpacing / 2) / step)
+                    guard letters.indices.contains(index) else { return }
+                    let letter = letters[index]
+                    guard letter != scrubbedLetter else { return }
+                    scrubbedLetter = letter
+                    UISelectionFeedbackGenerator().selectionChanged()
+                    onSelect(letter)
+                }
+                .onEnded { _ in scrubbedLetter = nil }
+        )
     }
 }

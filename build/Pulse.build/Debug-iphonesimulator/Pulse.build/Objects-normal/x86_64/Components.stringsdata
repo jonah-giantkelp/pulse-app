@@ -4,18 +4,10 @@
     "Localizable": [
       {
         "comment": "",
-        "key": "PULSE",
-        "location": {
-          "startingColumn": 14,
-          "startingLine": 34
-        }
-      },
-      {
-        "comment": "",
         "key": "ACTIVE",
         "location": {
           "startingColumn": 23,
-          "startingLine": 48
+          "startingLine": 55
         }
       },
       {
@@ -23,7 +15,7 @@
         "key": "INACTIVE",
         "location": {
           "startingColumn": 34,
-          "startingLine": 48
+          "startingLine": 55
         }
       },
       {
@@ -31,7 +23,7 @@
         "key": "",
         "location": {
           "startingColumn": 29,
-          "startingLine": 228
+          "startingLine": 235
         }
       },
       {
@@ -39,7 +31,7 @@
         "key": "",
         "location": {
           "startingColumn": 27,
-          "startingLine": 230
+          "startingLine": 237
         }
       }
     ]

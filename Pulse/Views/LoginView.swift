@@ -5,6 +5,7 @@ struct LoginView: View {
 
     @State private var email = ""
     @State private var password = ""
+    @State private var confirmPassword = ""
     @State private var isSigningUp = false
     @State private var isWorking = false
     @State private var errorMessage: String?
@@ -23,7 +24,7 @@ struct LoginView: View {
                 .padding(.bottom, 20)
 
             PulseWordmark(size: 32)
-            Text("GIG TRACKER")
+            Text("EVENT TRACKER")
                 .font(.mono(11))
                 .kerning(4)
                 .foregroundStyle(Color.pulseTextMuted)
@@ -32,6 +33,9 @@ struct LoginView: View {
             VStack(spacing: 12) {
                 PulseTextField(placeholder: "EMAIL", text: $email, keyboard: .emailAddress)
                 PulseTextField(placeholder: "PASSWORD", text: $password, secure: true)
+                if isSigningUp {
+                    PulseTextField(placeholder: "CONFIRM PASSWORD", text: $confirmPassword, secure: true)
+                }
 
                 if let errorMessage {
                     Text(errorMessage.uppercased())
@@ -59,10 +63,12 @@ struct LoginView: View {
                     }
                 }
                 .buttonStyle(AccentButtonStyle())
-                .disabled(isWorking || email.isEmpty || password.isEmpty)
+                .disabled(isWorking || email.isEmpty || password.isEmpty
+                    || (isSigningUp && confirmPassword.isEmpty))
 
                 Button {
                     isSigningUp.toggle()
+                    confirmPassword = ""
                     errorMessage = nil
                     infoMessage = nil
                 } label: {
@@ -86,6 +92,10 @@ struct LoginView: View {
     private func submit() {
         errorMessage = nil
         infoMessage = nil
+        if isSigningUp && password != confirmPassword {
+            errorMessage = "Passwords don't match"
+            return
+        }
         isWorking = true
         Task {
             defer { isWorking = false }

@@ -1,0 +1,131 @@
+{
+  "" : {
+    "const-values" : "/Users/jonah/Personal/Pulse/pulse-app/build/Pulse.build/Release-iphonesimulator/Pulse.build/Objects-normal/arm64/Pulse-primary.swiftconstvalues",
+    "dependencies" : "/Users/jonah/Personal/Pulse/pulse-app/build/Pulse.build/Release-iphonesimulator/Pulse.build/Objects-normal/arm64/Pulse-primary.d",
+    "diagnostics" : "/Users/jonah/Personal/Pulse/pulse-app/build/Pulse.build/Release-iphonesimulator/Pulse.build/Objects-normal/arm64/Pulse-primary.dia",
+    "emit-module-dependencies" : "/Users/jonah/Personal/Pulse/pulse-app/build/Pulse.build/Release-iphonesimulator/Pulse.build/Objects-normal/arm64/Pulse-primary-emit-module.d",
+    "emit-module-diagnostics" : "/Users/jonah/Personal/Pulse/pulse-app/build/Pulse.build/Release-iphonesimulator/Pulse.build/Objects-normal/arm64/Pulse-primary-emit-module.dia",
+    "pch" : "/Users/jonah/Personal/Pulse/pulse-app/build/Pulse.build/Release-iphonesimulator/Pulse.build/Objects-normal/arm64/Pulse-primary-Bridging-header.pch",
+    "swift-dependencies" : "/Users/jonah/Personal/Pulse/pulse-app/build/Pulse.build/Release-iphonesimulator/Pulse.build/Objects-normal/arm64/Pulse-primary.swiftdeps"
+  },
+  "/Users/jonah/Personal/Pulse/pulse-app/Pulse/APIClient.swift" : {
+    "index-unit-output-path" : "/Pulse.build/Release-iphonesimulator/Pulse.build/Objects-normal/arm64/APIClient.o",
+    "llvm-bc" : "/Users/jonah/Personal/Pulse/pulse-app/build/Pulse.build/Release-iphonesimulator/Pulse.build/Objects-normal/arm64/APIClient.bc",
+    "object" : "/Users/jonah/Personal/Pulse/pulse-app/build/Pulse.build/Release-iphonesimulator/Pulse.build/Objects-normal/arm64/APIClient.o"
+  },
+  "/Users/jonah/Personal/Pulse/pulse-app/Pulse/AuthManager.swift" : {
+    "index-unit-output-path" : "/Pulse.build/Release-iphonesimulator/Pulse.build/Objects-normal/arm64/AuthManager.o",
+    "llvm-bc" : "/Users/jonah/Personal/Pulse/pulse-app/build/Pulse.build/Release-iphonesimulator/Pulse.build/Objects-normal/arm64/AuthManager.bc",
+    "object" : "/Users/jonah/Personal/Pulse/pulse-app/build/Pulse.build/Release-iphonesimulator/Pulse.build/Objects-normal/arm64/AuthManager.o"
+  },
+  "/Users/jonah/Personal/Pulse/pulse-app/Pulse/Config.swift" : {
+    "index-unit-output-path" : "/Pulse.build/Release-iphonesimulator/Pulse.build/Objects-normal/arm64/Config.o",
+    "llvm-bc" : "/Users/jonah/Personal/Pulse/pulse-app/build/Pulse.build/Release-iphonesimulator/Pulse.build/Objects-normal/arm64/Config.bc",
+    "object" : "/Users/jonah/Personal/Pulse/pulse-app/build/Pulse.build/Release-iphonesimulator/Pulse.build/Objects-normal/arm64/Config.o"
+  },
+  "/Users/jonah/Personal/Pulse/pulse-app/Pulse/Keychain.swift" : {
+    "index-unit-output-path" : "/Pulse.build/Release-iphonesimulator/Pulse.build/Objects-normal/arm64/Keychain.o",
+    "llvm-bc" : "/Users/jonah/Personal/Pulse/pulse-app/build/Pulse.build/Release-iphonesimulator/Pulse.build/Objects-normal/arm64/Keychain.bc",
+    "object" : "/Users/jonah/Personal/Pulse/pulse-app/build/Pulse.build/Release-iphonesimulator/Pulse.build/Objects-normal/arm64/Keychain.o"
+  },
+  "/Users/jonah/Personal/Pulse/pulse-app/Pulse/Models.swift" : {
+    "index-unit-output-path" : "/Pulse.build/Release-iphonesimulator/Pulse.build/Objects-normal/arm64/Models.o",
+    "llvm-bc" : "/Users/jonah/Personal/Pulse/pulse-app/build/Pulse.build/Release-iphonesimulator/Pulse.build/Objects-normal/arm64/Models.bc",
+    "object" : "/Users/jonah/Personal/Pulse/pulse-app/build/Pulse.build/Release-iphonesimulator/Pulse.build/Objects-normal/arm64/Models.o"
+  },
+  "/Users/jonah/Personal/Pulse/pulse-app/Pulse/PulseApp.swift" : {
+    "index-unit-output-path" : "/Pulse.build/Release-iphonesimulator/Pulse.build/Objects-normal/arm64/PulseApp.o",
+    "llvm-bc" : "/Users/jonah/Personal/Pulse/pulse-app/build/Pulse.build/Release-iphonesimulator/Pulse.build/Objects-normal/arm64/PulseApp.bc",
+    "object" : "/Users/jonah/Personal/Pulse/pulse-app/build/Pulse.build/Release-iphonesimulator/Pulse.build/Objects-normal/arm64/PulseApp.o"
+  },
+  "/Users/jonah/Personal/Pulse/pulse-app/Pulse/Stores/AccessStore.swift" : {
+    "index-unit-output-path" : "/Pulse.build/Release-iphonesimulator/Pulse.build/Objects-normal/arm64/AccessStore.o",
+    "llvm-bc" : "/Users/jonah/Personal/Pulse/pulse-app/build/Pulse.build/Release-iphonesimulator/Pulse.build/Objects-normal/arm64/AccessStore.bc",
+    "object" : "/Users/jonah/Personal/Pulse/pulse-app/build/Pulse.build/Release-iphonesimulator/Pulse.build/Objects-normal/arm64/AccessStore.o"
+  },
+  "/Users/jonah/Personal/Pulse/pulse-app/Pulse/Stores/ArtistStore.swift" : {
+    "index-unit-output-path" : "/Pulse.build/Release-iphonesimulator/Pulse.build/Objects-normal/arm64/ArtistStore.o",
+    "llvm-bc" : "/Users/jonah/Personal/Pulse/pulse-app/build/Pulse.build/Release-iphonesimulator/Pulse.build/Objects-normal/arm64/ArtistStore.bc",
+    "object" : "/Users/jonah/Personal/Pulse/pulse-app/build/Pulse.build/Release-iphonesimulator/Pulse.build/Objects-normal/arm64/ArtistStore.o"
+  },
+  "/Users/jonah/Personal/Pulse/pulse-app/Pulse/Stores/EventStore.swift" : {
+    "index-unit-output-path" : "/Pulse.build/Release-iphonesimulator/Pulse.build/Objects-normal/arm64/EventStore.o",
+    "llvm-bc" : "/Users/jonah/Personal/Pulse/pulse-app/build/Pulse.build/Release-iphonesimulator/Pulse.build/Objects-normal/arm64/EventStore.bc",
+    "object" : "/Users/jonah/Personal/Pulse/pulse-app/build/Pulse.build/Release-iphonesimulator/Pulse.build/Objects-normal/arm64/EventStore.o"
+  },
+  "/Users/jonah/Personal/Pulse/pulse-app/Pulse/Stores/FavouritesStore.swift" : {
+    "index-unit-output-path" : "/Pulse.build/Release-iphonesimulator/Pulse.build/Objects-normal/arm64/FavouritesStore.o",
+    "llvm-bc" : "/Users/jonah/Personal/Pulse/pulse-app/build/Pulse.build/Release-iphonesimulator/Pulse.build/Objects-normal/arm64/FavouritesStore.bc",
+    "object" : "/Users/jonah/Personal/Pulse/pulse-app/build/Pulse.build/Release-iphonesimulator/Pulse.build/Objects-normal/arm64/FavouritesStore.o"
+  },
+  "/Users/jonah/Personal/Pulse/pulse-app/Pulse/Stores/SettingsStore.swift" : {
+    "index-unit-output-path" : "/Pulse.build/Release-iphonesimulator/Pulse.build/Objects-normal/arm64/SettingsStore.o",
+    "llvm-bc" : "/Users/jonah/Personal/Pulse/pulse-app/build/Pulse.build/Release-iphonesimulator/Pulse.build/Objects-normal/arm64/SettingsStore.bc",
+    "object" : "/Users/jonah/Personal/Pulse/pulse-app/build/Pulse.build/Release-iphonesimulator/Pulse.build/Objects-normal/arm64/SettingsStore.o"
+  },
+  "/Users/jonah/Personal/Pulse/pulse-app/Pulse/Theme.swift" : {
+    "index-unit-output-path" : "/Pulse.build/Release-iphonesimulator/Pulse.build/Objects-normal/arm64/Theme.o",
+    "llvm-bc" : "/Users/jonah/Personal/Pulse/pulse-app/build/Pulse.build/Release-iphonesimulator/Pulse.build/Objects-normal/arm64/Theme.bc",
+    "object" : "/Users/jonah/Personal/Pulse/pulse-app/build/Pulse.build/Release-iphonesimulator/Pulse.build/Objects-normal/arm64/Theme.o"
+  },
+  "/Users/jonah/Personal/Pulse/pulse-app/Pulse/Views/ArtistDetailView.swift" : {
+    "index-unit-output-path" : "/Pulse.build/Release-iphonesimulator/Pulse.build/Objects-normal/arm64/ArtistDetailView.o",
+    "llvm-bc" : "/Users/jonah/Personal/Pulse/pulse-app/build/Pulse.build/Release-iphonesimulator/Pulse.build/Objects-normal/arm64/ArtistDetailView.bc",
+    "object" : "/Users/jonah/Personal/Pulse/pulse-app/build/Pulse.build/Release-iphonesimulator/Pulse.build/Objects-normal/arm64/ArtistDetailView.o"
+  },
+  "/Users/jonah/Personal/Pulse/pulse-app/Pulse/Views/ArtistsView.swift" : {
+    "index-unit-output-path" : "/Pulse.build/Release-iphonesimulator/Pulse.build/Objects-normal/arm64/ArtistsView.o",
+    "llvm-bc" : "/Users/jonah/Personal/Pulse/pulse-app/build/Pulse.build/Release-iphonesimulator/Pulse.build/Objects-normal/arm64/ArtistsView.bc",
+    "object" : "/Users/jonah/Personal/Pulse/pulse-app/build/Pulse.build/Release-iphonesimulator/Pulse.build/Objects-normal/arm64/ArtistsView.o"
+  },
+  "/Users/jonah/Personal/Pulse/pulse-app/Pulse/Views/Components.swift" : {
+    "index-unit-output-path" : "/Pulse.build/Release-iphonesimulator/Pulse.build/Objects-normal/arm64/Components.o",
+    "llvm-bc" : "/Users/jonah/Personal/Pulse/pulse-app/build/Pulse.build/Release-iphonesimulator/Pulse.build/Objects-normal/arm64/Components.bc",
+    "object" : "/Users/jonah/Personal/Pulse/pulse-app/build/Pulse.build/Release-iphonesimulator/Pulse.build/Objects-normal/arm64/Components.o"
+  },
+  "/Users/jonah/Personal/Pulse/pulse-app/Pulse/Views/ConcertsView.swift" : {
+    "index-unit-output-path" : "/Pulse.build/Release-iphonesimulator/Pulse.build/Objects-normal/arm64/ConcertsView.o",
+    "llvm-bc" : "/Users/jonah/Personal/Pulse/pulse-app/build/Pulse.build/Release-iphonesimulator/Pulse.build/Objects-normal/arm64/ConcertsView.bc",
+    "object" : "/Users/jonah/Personal/Pulse/pulse-app/build/Pulse.build/Release-iphonesimulator/Pulse.build/Objects-normal/arm64/ConcertsView.o"
+  },
+  "/Users/jonah/Personal/Pulse/pulse-app/Pulse/Views/EventDetailView.swift" : {
+    "index-unit-output-path" : "/Pulse.build/Release-iphonesimulator/Pulse.build/Objects-normal/arm64/EventDetailView.o",
+    "llvm-bc" : "/Users/jonah/Personal/Pulse/pulse-app/build/Pulse.build/Release-iphonesimulator/Pulse.build/Objects-normal/arm64/EventDetailView.bc",
+    "object" : "/Users/jonah/Personal/Pulse/pulse-app/build/Pulse.build/Release-iphonesimulator/Pulse.build/Objects-normal/arm64/EventDetailView.o"
+  },
+  "/Users/jonah/Personal/Pulse/pulse-app/Pulse/Views/FavouritesView.swift" : {
+    "index-unit-output-path" : "/Pulse.build/Release-iphonesimulator/Pulse.build/Objects-normal/arm64/FavouritesView.o",
+    "llvm-bc" : "/Users/jonah/Personal/Pulse/pulse-app/build/Pulse.build/Release-iphonesimulator/Pulse.build/Objects-normal/arm64/FavouritesView.bc",
+    "object" : "/Users/jonah/Personal/Pulse/pulse-app/build/Pulse.build/Release-iphonesimulator/Pulse.build/Objects-normal/arm64/FavouritesView.o"
+  },
+  "/Users/jonah/Personal/Pulse/pulse-app/Pulse/Views/LoginView.swift" : {
+    "index-unit-output-path" : "/Pulse.build/Release-iphonesimulator/Pulse.build/Objects-normal/arm64/LoginView.o",
+    "llvm-bc" : "/Users/jonah/Personal/Pulse/pulse-app/build/Pulse.build/Release-iphonesimulator/Pulse.build/Objects-normal/arm64/LoginView.bc",
+    "object" : "/Users/jonah/Personal/Pulse/pulse-app/build/Pulse.build/Release-iphonesimulator/Pulse.build/Objects-normal/arm64/LoginView.o"
+  },
+  "/Users/jonah/Personal/Pulse/pulse-app/Pulse/Views/MainTabView.swift" : {
+    "index-unit-output-path" : "/Pulse.build/Release-iphonesimulator/Pulse.build/Objects-normal/arm64/MainTabView.o",
+    "llvm-bc" : "/Users/jonah/Personal/Pulse/pulse-app/build/Pulse.build/Release-iphonesimulator/Pulse.build/Objects-normal/arm64/MainTabView.bc",
+    "object" : "/Users/jonah/Personal/Pulse/pulse-app/build/Pulse.build/Release-iphonesimulator/Pulse.build/Objects-normal/arm64/MainTabView.o"
+  },
+  "/Users/jonah/Personal/Pulse/pulse-app/Pulse/Views/PendingApprovalView.swift" : {
+    "index-unit-output-path" : "/Pulse.build/Release-iphonesimulator/Pulse.build/Objects-normal/arm64/PendingApprovalView.o",
+    "llvm-bc" : "/Users/jonah/Personal/Pulse/pulse-app/build/Pulse.build/Release-iphonesimulator/Pulse.build/Objects-normal/arm64/PendingApprovalView.bc",
+    "object" : "/Users/jonah/Personal/Pulse/pulse-app/build/Pulse.build/Release-iphonesimulator/Pulse.build/Objects-normal/arm64/PendingApprovalView.o"
+  },
+  "/Users/jonah/Personal/Pulse/pulse-app/Pulse/Views/SearchView.swift" : {
+    "index-unit-output-path" : "/Pulse.build/Release-iphonesimulator/Pulse.build/Objects-normal/arm64/SearchView.o",
+    "llvm-bc" : "/Users/jonah/Personal/Pulse/pulse-app/build/Pulse.build/Release-iphonesimulator/Pulse.build/Objects-normal/arm64/SearchView.bc",
+    "object" : "/Users/jonah/Personal/Pulse/pulse-app/build/Pulse.build/Release-iphonesimulator/Pulse.build/Objects-normal/arm64/SearchView.o"
+  },
+  "/Users/jonah/Personal/Pulse/pulse-app/Pulse/Views/SettingsView.swift" : {
+    "index-unit-output-path" : "/Pulse.build/Release-iphonesimulator/Pulse.build/Objects-normal/arm64/SettingsView.o",
+    "llvm-bc" : "/Users/jonah/Personal/Pulse/pulse-app/build/Pulse.build/Release-iphonesimulator/Pulse.build/Objects-normal/arm64/SettingsView.bc",
+    "object" : "/Users/jonah/Personal/Pulse/pulse-app/build/Pulse.build/Release-iphonesimulator/Pulse.build/Objects-normal/arm64/SettingsView.o"
+  },
+  "/Users/jonah/Personal/Pulse/pulse-app/build/Pulse.build/Release-iphonesimulator/Pulse.build/DerivedSources/GeneratedAssetSymbols.swift" : {
+    "index-unit-output-path" : "/Pulse.build/Release-iphonesimulator/Pulse.build/Objects-normal/arm64/GeneratedAssetSymbols.o",
+    "llvm-bc" : "/Users/jonah/Personal/Pulse/pulse-app/build/Pulse.build/Release-iphonesimulator/Pulse.build/Objects-normal/arm64/GeneratedAssetSymbols.bc",
+    "object" : "/Users/jonah/Personal/Pulse/pulse-app/build/Pulse.build/Release-iphonesimulator/Pulse.build/Objects-normal/arm64/GeneratedAssetSymbols.o"
+  }
+}

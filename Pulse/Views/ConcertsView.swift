@@ -64,36 +64,49 @@ struct ConcertsView: View {
             LazyVStack(alignment: .leading, spacing: 12) {
                 if events.isLoading {
                     LoadingState()
-                } else if let error = events.loadError {
-                    EmptyState(icon: "exclamationmark.triangle", message: error)
                 } else if events.events.isEmpty {
-                    EmptyState(icon: "waveform", message: "No upcoming events for your artists")
-                } else {
-                    ForEach(listRows) { row in
-                        switch row {
-                        case .day(let day, let dayEvents):
-                            PulseSectionHeader(text: PulseFormat.day(day))
-                                .padding(.top, 10)
-                            ForEach(dayEvents) { event in
-                                EventCard(event: event, showDate: false)
-                            }
-                        case .run(let runEvents):
-                            PulseSectionHeader(
-                                text: PulseFormat.dayRange(runEvents.first!.date, runEvents.last!.date)
-                            )
-                            .padding(.top, 10)
-                            EventRunCard(events: runEvents)
-                        }
+                    if let error = events.loadError {
+                        EmptyState(icon: "exclamationmark.triangle", message: error)
+                    } else {
+                        EmptyState(icon: "waveform", message: "No upcoming events for your artists")
                     }
+                } else {
+                    GroupedEventList(events: events.events)
                 }
             }
             .padding(.horizontal, 16)
             .padding(.bottom, 24)
         }
-        .refreshable { await events.load() }
+        // Unstructured task: SwiftUI tears the .refreshable task down when the
+        // view re-renders mid-pull, which used to cancel the request itself.
+        .refreshable { await Task { await events.load() }.value }
+    }
+}
+
+/// The day-grouped event list shared by the Concerts and Liked tabs.
+struct GroupedEventList: View {
+    let events: [Event]
+
+    var body: some View {
+        ForEach(listRows) { row in
+            switch row {
+            case .day(let day, let dayEvents):
+                PulseSectionHeader(text: PulseFormat.day(day))
+                    .padding(.top, 10)
+                ForEach(dayEvents) { event in
+                    EventCard(event: event, showDate: false)
+                }
+            case .run(let runEvents):
+                PulseSectionHeader(
+                    text: PulseFormat.dayRange(runEvents.first!.date, runEvents.last!.date)
+                )
+                .padding(.top, 10)
+                EventRunCard(events: runEvents)
+            }
+        }
     }
 
-    private enum ConcertListRow: Identifiable {
+    private enum ListRow: Identifiable {
         case day(Date, [Event])
         case run([Event])
 
@@ -108,9 +121,9 @@ struct ConcertsView: View {
     /// Days as usual, except runs of consecutive days that each hold exactly
     /// one event by the same single artist — those collapse into one row
     /// ("6–7 AUG").
-    private var listRows: [ConcertListRow] {
+    private var listRows: [ListRow] {
         let calendar = Calendar.current
-        var rows: [ConcertListRow] = []
+        var rows: [ListRow] = []
         var run: [Event] = []
 
         func flushRun() {
@@ -122,7 +135,7 @@ struct ConcertsView: View {
             run = []
         }
 
-        for group in EventStore.byDay(events.events) {
+        for group in EventStore.byDay(events) {
             guard group.events.count == 1,
                   let event = group.events.first,
                   let soloArtist = event.artists?.first, event.artists?.count == 1 else {
@@ -262,7 +275,10 @@ struct CalendarModeView: View {
                     }
                 }
                 .padding(.top, 8)
-                .transaction { $0.animation = nil }
+                // Don't animate the list on month slides / day taps — but leave
+                // other transactions (e.g. the event sheet dismissal) alone.
+                .animation(nil, value: displayedMonth)
+                .animation(nil, value: selectedDay)
             }
             .padding(.horizontal, 16)
             .padding(.bottom, 24)

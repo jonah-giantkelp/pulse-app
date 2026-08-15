@@ -9,6 +9,7 @@ struct EventDetailView: View {
     @EnvironmentObject private var router: AppRouter
     @EnvironmentObject private var artists: ArtistStore
     @EnvironmentObject private var favourites: FavouritesStore
+    @Environment(\.dismiss) private var dismiss
 
     @State private var showFullLineup = false
 
@@ -21,30 +22,53 @@ struct EventDetailView: View {
     }
 
     var body: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: 20) {
-                header
-                poster
-                titleBlock
-                infoBlock
+        // NavigationStack so tracked artists can push through to their page.
+        NavigationStack {
+            ScrollView {
+                VStack(alignment: .leading, spacing: 20) {
+                    header
+                    poster
+                    titleBlock
+                    infoBlock
 
-                if let description = event.detail?.description, !description.isEmpty {
-                    sectionBlock("About") {
-                        Text(description)
-                            .font(.mono(12))
-                            .foregroundStyle(Color.pulseTextSecondary)
-                            .lineSpacing(4)
+                    if let description = event.detail?.description, !description.isEmpty {
+                        sectionBlock("About") {
+                            Text(description)
+                                .font(.mono(12))
+                                .foregroundStyle(Color.pulseTextSecondary)
+                                .lineSpacing(4)
+                        }
                     }
-                }
 
-                socialBlock
-                ticketsBlock
-                lineupBlock
+                    socialBlock
+                    ticketsBlock
+                    lineupBlock
+                }
+                .padding(16)
             }
-            .padding(16)
+            .background(Color.pulseSurface)
+            .toolbar(.hidden, for: .navigationBar)
+            // Back-swipe from the left edge closes the sheet, like popping a
+            // page. simultaneous so vertical scrolling keeps working.
+            .simultaneousGesture(
+                DragGesture(minimumDistance: 20, coordinateSpace: .global)
+                    .onEnded { value in
+                        guard value.startLocation.x < 44,
+                              value.translation.width > 80,
+                              abs(value.translation.height) < value.translation.width
+                        else { return }
+                        isPresented = false
+                        dismiss()
+                    }
+            )
         }
-        .background(Color.pulseSurface)
         .preferredColorScheme(.dark)
+    }
+
+    /// The tracked-artists entry backing an event artist, if we have it —
+    /// needed to push ArtistDetailView.
+    private func trackedEntry(for artist: EventArtist) -> UserArtist? {
+        artists.tracked.first { $0.artistId == artist.artistId }
     }
 
     // MARK: - Sections
@@ -53,6 +77,7 @@ struct EventDetailView: View {
         HStack {
             Button {
                 isPresented = false
+                dismiss()
             } label: {
                 Image(systemName: "chevron.left")
                     .font(.system(size: 15, weight: .bold))
@@ -107,12 +132,24 @@ struct EventDetailView: View {
                 .foregroundStyle(.white)
 
             if !tracked.isEmpty {
-                HStack(spacing: 8) {
+                let strip = HStack(spacing: 8) {
                     StackedAvatars(artists: tracked, size: 26)
                     Text(tracked.map(\.name).joined(separator: ", "))
                         .font(.mono(12))
                         .foregroundStyle(Color.pulseTextSecondary)
                         .lineLimit(2)
+                }
+                // Single artist: the strip links straight to their page.
+                // Multiple artists each get a row in the lineup block below.
+                if tracked.count == 1, let entry = trackedEntry(for: tracked[0]) {
+                    NavigationLink {
+                        ArtistDetailView(entry: entry)
+                    } label: {
+                        strip.contentShape(Rectangle())
+                    }
+                    .buttonStyle(.plain)
+                } else {
+                    strip
                 }
             }
 
@@ -275,7 +312,7 @@ struct EventDetailView: View {
             sectionBlock("Lineup") {
                 VStack(alignment: .leading, spacing: 10) {
                     ForEach(tracked, id: \.artistId) { artist in
-                        HStack(spacing: 10) {
+                        let row = HStack(spacing: 10) {
                             ArtistAvatar(url: artist.imageUrl, name: artist.name, size: 32)
                             Text(artist.name)
                                 .font(.mono(13, .bold))
@@ -288,6 +325,16 @@ struct EventDetailView: View {
                                 .font(.mono(9, .bold))
                                 .kerning(1)
                                 .foregroundStyle(Color.pulseAccent)
+                        }
+                        if let entry = trackedEntry(for: artist) {
+                            NavigationLink {
+                                ArtistDetailView(entry: entry)
+                            } label: {
+                                row.contentShape(Rectangle())
+                            }
+                            .buttonStyle(.plain)
+                        } else {
+                            row
                         }
                     }
 

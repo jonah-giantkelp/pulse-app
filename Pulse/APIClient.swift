@@ -104,6 +104,12 @@ final class APIClient {
         let _: StatusResponse = try await request("DELETE", "/me/account")
     }
 
+    func accessStatus() async throws -> Bool {
+        struct AccessStatus: Decodable { let approved: Bool }
+        let status: AccessStatus = try await request("GET", "/me/access")
+        return status.approved
+    }
+
     // MARK: - Core request
 
     private func request<T: Decodable>(

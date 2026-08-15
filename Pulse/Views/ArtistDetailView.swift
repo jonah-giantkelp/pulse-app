@@ -19,6 +19,8 @@ struct ArtistDetailView: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 20) {
+                header
+
                 HStack(spacing: 16) {
                     ArtistAvatar(url: artist.imageUrl, name: artist.name, size: 72)
                     VStack(alignment: .leading, spacing: 8) {
@@ -73,7 +75,44 @@ struct ArtistDetailView: View {
             .padding(16)
         }
         .background(Color.pulseBg)
+        // Custom compact back header instead of the system nav bar (which
+        // also renders an oversized back chevron).
+        .toolbar(.hidden, for: .navigationBar)
+        // Hiding the nav bar disables the system back-swipe — re-add it.
+        .simultaneousGesture(
+            DragGesture(minimumDistance: 20, coordinateSpace: .global)
+                .onEnded { value in
+                    guard value.startLocation.x < 44,
+                          value.translation.width > 80,
+                          abs(value.translation.height) < value.translation.width
+                    else { return }
+                    dismiss()
+                }
+        )
         .task { await loadDetail() }
+    }
+
+    /// Same geometry as the event sheet's header.
+    private var header: some View {
+        HStack {
+            Button {
+                dismiss()
+            } label: {
+                Image(systemName: "chevron.left")
+                    .font(.system(size: 15, weight: .bold))
+                    .foregroundStyle(Color.pulseAccent)
+                    .frame(width: 32, height: 32, alignment: .leading)
+                    .contentShape(Rectangle())
+            }
+            .buttonStyle(.plain)
+            Spacer()
+            Text("ARTIST")
+                .font(.mono(11, .bold))
+                .kerning(2)
+                .foregroundStyle(Color.pulseTextMuted)
+            Spacer()
+            Color.clear.frame(width: 32, height: 32) // balances the chevron
+        }
     }
 
     @ViewBuilder

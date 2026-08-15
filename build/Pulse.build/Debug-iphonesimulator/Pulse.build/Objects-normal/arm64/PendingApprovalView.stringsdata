@@ -1,0 +1,40 @@
+{
+  "source": "/Users/jonah/Personal/Pulse/pulse-app/Pulse/Views/PendingApprovalView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "AWAITING APPROVAL",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 20
+        }
+      },
+      {
+        "comment": "",
+        "key": "YOUR ACCOUNT IS PENDING REVIEW.\nYOU'LL GET ACCESS ONCE IT'S\nBEEN APPROVED.",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 25
+        }
+      },
+      {
+        "comment": "",
+        "key": "CHECK AGAIN",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 42
+        }
+      },
+      {
+        "comment": "",
+        "key": "SIGN OUT",
+        "location": {
+          "startingColumn": 26,
+          "startingLine": 52
+        }
+      }
+    ]
+  },
+  "version": 1
+}

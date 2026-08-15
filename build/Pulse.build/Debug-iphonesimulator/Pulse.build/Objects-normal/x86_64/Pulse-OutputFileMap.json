@@ -66,6 +66,16 @@
     "swift-dependencies" : "/Users/jonah/Personal/Pulse/pulse-app/build/Pulse.build/Debug-iphonesimulator/Pulse.build/Objects-normal/x86_64/PulseApp.swiftdeps",
     "swiftmodule" : "/Users/jonah/Personal/Pulse/pulse-app/build/Pulse.build/Debug-iphonesimulator/Pulse.build/Objects-normal/x86_64/PulseApp~partial.swiftmodule"
   },
+  "/Users/jonah/Personal/Pulse/pulse-app/Pulse/Stores/AccessStore.swift" : {
+    "const-values" : "/Users/jonah/Personal/Pulse/pulse-app/build/Pulse.build/Debug-iphonesimulator/Pulse.build/Objects-normal/x86_64/AccessStore.swiftconstvalues",
+    "dependencies" : "/Users/jonah/Personal/Pulse/pulse-app/build/Pulse.build/Debug-iphonesimulator/Pulse.build/Objects-normal/x86_64/AccessStore.d",
+    "diagnostics" : "/Users/jonah/Personal/Pulse/pulse-app/build/Pulse.build/Debug-iphonesimulator/Pulse.build/Objects-normal/x86_64/AccessStore.dia",
+    "index-unit-output-path" : "/Pulse.build/Debug-iphonesimulator/Pulse.build/Objects-normal/x86_64/AccessStore.o",
+    "llvm-bc" : "/Users/jonah/Personal/Pulse/pulse-app/build/Pulse.build/Debug-iphonesimulator/Pulse.build/Objects-normal/x86_64/AccessStore.bc",
+    "object" : "/Users/jonah/Personal/Pulse/pulse-app/build/Pulse.build/Debug-iphonesimulator/Pulse.build/Objects-normal/x86_64/AccessStore.o",
+    "swift-dependencies" : "/Users/jonah/Personal/Pulse/pulse-app/build/Pulse.build/Debug-iphonesimulator/Pulse.build/Objects-normal/x86_64/AccessStore.swiftdeps",
+    "swiftmodule" : "/Users/jonah/Personal/Pulse/pulse-app/build/Pulse.build/Debug-iphonesimulator/Pulse.build/Objects-normal/x86_64/AccessStore~partial.swiftmodule"
+  },
   "/Users/jonah/Personal/Pulse/pulse-app/Pulse/Stores/ArtistStore.swift" : {
     "const-values" : "/Users/jonah/Personal/Pulse/pulse-app/build/Pulse.build/Debug-iphonesimulator/Pulse.build/Objects-normal/x86_64/ArtistStore.swiftconstvalues",
     "dependencies" : "/Users/jonah/Personal/Pulse/pulse-app/build/Pulse.build/Debug-iphonesimulator/Pulse.build/Objects-normal/x86_64/ArtistStore.d",
@@ -195,6 +205,16 @@
     "object" : "/Users/jonah/Personal/Pulse/pulse-app/build/Pulse.build/Debug-iphonesimulator/Pulse.build/Objects-normal/x86_64/MainTabView.o",
     "swift-dependencies" : "/Users/jonah/Personal/Pulse/pulse-app/build/Pulse.build/Debug-iphonesimulator/Pulse.build/Objects-normal/x86_64/MainTabView.swiftdeps",
     "swiftmodule" : "/Users/jonah/Personal/Pulse/pulse-app/build/Pulse.build/Debug-iphonesimulator/Pulse.build/Objects-normal/x86_64/MainTabView~partial.swiftmodule"
+  },
+  "/Users/jonah/Personal/Pulse/pulse-app/Pulse/Views/PendingApprovalView.swift" : {
+    "const-values" : "/Users/jonah/Personal/Pulse/pulse-app/build/Pulse.build/Debug-iphonesimulator/Pulse.build/Objects-normal/x86_64/PendingApprovalView.swiftconstvalues",
+    "dependencies" : "/Users/jonah/Personal/Pulse/pulse-app/build/Pulse.build/Debug-iphonesimulator/Pulse.build/Objects-normal/x86_64/PendingApprovalView.d",
+    "diagnostics" : "/Users/jonah/Personal/Pulse/pulse-app/build/Pulse.build/Debug-iphonesimulator/Pulse.build/Objects-normal/x86_64/PendingApprovalView.dia",
+    "index-unit-output-path" : "/Pulse.build/Debug-iphonesimulator/Pulse.build/Objects-normal/x86_64/PendingApprovalView.o",
+    "llvm-bc" : "/Users/jonah/Personal/Pulse/pulse-app/build/Pulse.build/Debug-iphonesimulator/Pulse.build/Objects-normal/x86_64/PendingApprovalView.bc",
+    "object" : "/Users/jonah/Personal/Pulse/pulse-app/build/Pulse.build/Debug-iphonesimulator/Pulse.build/Objects-normal/x86_64/PendingApprovalView.o",
+    "swift-dependencies" : "/Users/jonah/Personal/Pulse/pulse-app/build/Pulse.build/Debug-iphonesimulator/Pulse.build/Objects-normal/x86_64/PendingApprovalView.swiftdeps",
+    "swiftmodule" : "/Users/jonah/Personal/Pulse/pulse-app/build/Pulse.build/Debug-iphonesimulator/Pulse.build/Objects-normal/x86_64/PendingApprovalView~partial.swiftmodule"
   },
   "/Users/jonah/Personal/Pulse/pulse-app/Pulse/Views/SearchView.swift" : {
     "const-values" : "/Users/jonah/Personal/Pulse/pulse-app/build/Pulse.build/Debug-iphonesimulator/Pulse.build/Objects-normal/x86_64/SearchView.swiftconstvalues",

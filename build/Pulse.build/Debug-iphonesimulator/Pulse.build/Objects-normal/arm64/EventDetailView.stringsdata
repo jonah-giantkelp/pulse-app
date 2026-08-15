@@ -7,7 +7,7 @@
         "key": "EVENT",
         "location": {
           "startingColumn": 18,
-          "startingLine": 65
+          "startingLine": 67
         }
       },
       {
@@ -15,7 +15,7 @@
         "key": "VIA %@",
         "location": {
           "startingColumn": 34,
-          "startingLine": 188
+          "startingLine": 190
         }
       },
       {
@@ -23,7 +23,7 @@
         "key": "TICKETS →",
         "location": {
           "startingColumn": 22,
-          "startingLine": 259
+          "startingLine": 261
         }
       },
       {
@@ -31,7 +31,7 @@
         "key": "TRACKED ✓",
         "location": {
           "startingColumn": 34,
-          "startingLine": 287
+          "startingLine": 289
         }
       },
       {
@@ -39,7 +39,7 @@
         "key": "HIDE FULL LINEUP",
         "location": {
           "startingColumn": 39,
-          "startingLine": 302
+          "startingLine": 304
         }
       },
       {
@@ -47,7 +47,7 @@
         "key": "FULL LINEUP (%lld)",
         "location": {
           "startingColumn": 39,
-          "startingLine": 303
+          "startingLine": 305
         }
       },
       {
@@ -55,7 +55,7 @@
         "key": "IG",
         "location": {
           "startingColumn": 53,
-          "startingLine": 360
+          "startingLine": 362
         }
       },
       {
@@ -63,7 +63,7 @@
         "key": "X",
         "location": {
           "startingColumn": 60,
-          "startingLine": 360
+          "startingLine": 362
         }
       }
     ]

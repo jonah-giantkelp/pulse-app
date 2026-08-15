@@ -1,0 +1,16 @@
+{
+  "source": "/Users/jonah/Personal/Pulse/pulse-app/Pulse/Views/FavouritesView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "LIKED EVENTS",
+        "location": {
+          "startingColumn": 22,
+          "startingLine": 9
+        }
+      }
+    ]
+  },
+  "version": 1
+}

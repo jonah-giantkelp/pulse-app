@@ -4,10 +4,10 @@
     "Localizable": [
       {
         "comment": "",
-        "key": "GIG TRACKER",
+        "key": "EVENT TRACKER",
         "location": {
           "startingColumn": 18,
-          "startingLine": 26
+          "startingLine": 27
         }
       },
       {
@@ -15,7 +15,7 @@
         "key": "CREATE ACCOUNT",
         "location": {
           "startingColumn": 44,
-          "startingLine": 57
+          "startingLine": 61
         }
       },
       {
@@ -23,7 +23,7 @@
         "key": "SIGN IN",
         "location": {
           "startingColumn": 63,
-          "startingLine": 57
+          "startingLine": 61
         }
       },
       {
@@ -31,7 +31,7 @@
         "key": "HAVE AN ACCOUNT? SIGN IN",
         "location": {
           "startingColumn": 40,
-          "startingLine": 69
+          "startingLine": 75
         }
       },
       {
@@ -39,7 +39,7 @@
         "key": "NEW HERE? CREATE ACCOUNT",
         "location": {
           "startingColumn": 69,
-          "startingLine": 69
+          "startingLine": 75
         }
       }
     ]

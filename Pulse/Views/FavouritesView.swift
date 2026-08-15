@@ -23,15 +23,15 @@ struct FavouritesView: View {
                     } else if favourites.events.isEmpty {
                         EmptyState(icon: "heart", message: "No liked events yet")
                     } else {
-                        ForEach(favourites.events) { event in
-                            EventCard(event: event)
-                        }
+                        GroupedEventList(events: favourites.events)
                     }
                 }
                 .padding(.horizontal, 16)
                 .padding(.bottom, 24)
             }
-            .refreshable { await favourites.load() }
+            // Unstructured task: see ConcertsView — refresh must survive the
+            // re-render that pull-to-refresh itself triggers.
+            .refreshable { await Task { await favourites.load() }.value }
         }
     }
 }

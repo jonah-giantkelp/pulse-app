@@ -1,0 +1,12 @@
+{
+  "/Users/jonah/Personal/Pulse/pulse-app/Pulse/Stores/AccessStore.swift" : {
+    "abi-baseline-json" : "/Users/jonah/Personal/Pulse/pulse-app/build/Pulse.build/Release-iphonesimulator/Pulse.build/Objects-normal/arm64/Pulse.abi.json",
+    "const-values" : "/Users/jonah/Personal/Pulse/pulse-app/build/Pulse.build/Release-iphonesimulator/Pulse.build/Objects-normal/arm64/Pulse-primary.swiftconstvalues",
+    "dependencies" : "/Users/jonah/Personal/Pulse/pulse-app/build/Pulse.build/Release-iphonesimulator/Pulse.build/Objects-normal/arm64/Pulse-primary.d",
+    "diagnostics" : "/Users/jonah/Personal/Pulse/pulse-app/build/Pulse.build/Release-iphonesimulator/Pulse.build/Objects-normal/arm64/Pulse-primary.dia",
+    "objc-header" : "/Users/jonah/Personal/Pulse/pulse-app/build/Pulse.build/Release-iphonesimulator/Pulse.build/Objects-normal/arm64/Pulse-Swift.h",
+    "swiftdoc" : "/Users/jonah/Personal/Pulse/pulse-app/build/Pulse.build/Release-iphonesimulator/Pulse.build/Objects-normal/arm64/Pulse.swiftdoc",
+    "swiftmodule" : "/Users/jonah/Personal/Pulse/pulse-app/build/Pulse.build/Release-iphonesimulator/Pulse.build/Objects-normal/arm64/Pulse.swiftmodule",
+    "swiftsourceinfo" : "/Users/jonah/Personal/Pulse/pulse-app/build/Pulse.build/Release-iphonesimulator/Pulse.build/Objects-normal/arm64/Pulse.swiftsourceinfo"
+  }
+}

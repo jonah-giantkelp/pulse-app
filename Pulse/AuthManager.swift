@@ -78,7 +78,11 @@ final class AuthManager: ObservableObject {
                 )
                 store(refreshed)
             } catch {
-                signOut()
+                // A cancelled refresh (e.g. pull-to-refresh torn down by
+                // SwiftUI) is not an auth failure — keep the session.
+                let cancelled = error is CancellationError
+                    || (error as NSError).code == NSURLErrorCancelled
+                if !cancelled { signOut() }
                 throw error
             }
         }

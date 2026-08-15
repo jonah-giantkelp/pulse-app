@@ -27,13 +27,23 @@ final class ArtistStore: ObservableObject {
     }
 
     func load() async {
-        isLoading = tracked.isEmpty
-        defer { isLoading = false }
+        // Avoid same-value @Published writes here: objectWillChange re-renders
+        // the view at the start of pull-to-refresh, and that teardown cancels
+        // the .refreshable task mid-request.
+        if tracked.isEmpty { isLoading = true }
+        defer { if isLoading { isLoading = false } }
         do {
             tracked = try await api.trackedArtists()
                 .sorted { $0.artists.name.localizedCaseInsensitiveCompare($1.artists.name) == .orderedAscending }
             loadError = nil
+        } catch is CancellationError {
+            // Refresh task torn down mid-flight — keep showing what we have.
+        } catch let error as URLError where error.code == .cancelled {
+            // Same teardown, surfaced through URLSession.
         } catch {
+            // Cancellation can also arrive wrapped by other layers (auth
+            // refresh, NSError -999) — never surface it as a load error.
+            if Task.isCancelled || (error as NSError).code == NSURLErrorCancelled { return }
             loadError = error.localizedDescription
         }
     }

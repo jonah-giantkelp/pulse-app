@@ -53,6 +53,8 @@ struct MainTabView: View {
             PulseTabBar(selected: $router.tab)
         }
         .background(Color.pulseBg.ignoresSafeArea())
+        // The keyboard slides over the tab bar instead of pushing it up.
+        .ignoresSafeArea(.keyboard, edges: .bottom)
         .task {
             async let a: Void = artists.load()
             async let e: Void = events.load()

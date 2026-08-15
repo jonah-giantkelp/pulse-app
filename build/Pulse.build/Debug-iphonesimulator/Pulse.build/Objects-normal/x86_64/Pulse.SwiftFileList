@@ -1,3 +1,4 @@
+/Users/jonah/Personal/Pulse/pulse-app/Pulse/Stores/AccessStore.swift
 /Users/jonah/Personal/Pulse/pulse-app/Pulse/Stores/ArtistStore.swift
 /Users/jonah/Personal/Pulse/pulse-app/Pulse/Stores/EventStore.swift
 /Users/jonah/Personal/Pulse/pulse-app/Pulse/Stores/FavouritesStore.swift
@@ -10,6 +11,7 @@
 /Users/jonah/Personal/Pulse/pulse-app/Pulse/Views/FavouritesView.swift
 /Users/jonah/Personal/Pulse/pulse-app/Pulse/Views/LoginView.swift
 /Users/jonah/Personal/Pulse/pulse-app/Pulse/Views/MainTabView.swift
+/Users/jonah/Personal/Pulse/pulse-app/Pulse/Views/PendingApprovalView.swift
 /Users/jonah/Personal/Pulse/pulse-app/Pulse/Views/SearchView.swift
 /Users/jonah/Personal/Pulse/pulse-app/Pulse/Views/SettingsView.swift
 /Users/jonah/Personal/Pulse/pulse-app/Pulse/APIClient.swift
