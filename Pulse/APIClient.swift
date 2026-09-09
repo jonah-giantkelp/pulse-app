@@ -76,6 +76,14 @@ final class APIClient {
         let _: StatusResponse = try await request("DELETE", "/me/favourites/\(eventId.uuidString.lowercased())")
     }
 
+    func notifications() async throws -> [UserNotification] {
+        try await request("GET", "/me/notifications")
+    }
+
+    func markNotificationsRead() async throws {
+        let _: StatusResponse = try await request("POST", "/me/notifications/read")
+    }
+
     func emailPreferences() async throws -> EmailPreferences {
         try await request("GET", "/me/email-preferences")
     }
@@ -88,6 +96,20 @@ final class APIClient {
             "recipients": recipients,
             "push_enabled": pushEnabled,
         ])
+    }
+
+    /// The canonical trackable cities (server-defined list).
+    func cities() async throws -> [City] {
+        try await request("GET", "/cities")
+    }
+
+    func addCity(_ city: String) async throws -> CityListResponse {
+        try await request("POST", "/me/email-preferences/cities", body: ["city": city])
+    }
+
+    func removeCity(_ city: String) async throws -> CityListResponse {
+        // appendingPathComponent percent-encodes spaces ("New York")
+        try await request("DELETE", "/me/email-preferences/cities/\(city)")
     }
 
     func registerPushToken(_ token: String) async throws {

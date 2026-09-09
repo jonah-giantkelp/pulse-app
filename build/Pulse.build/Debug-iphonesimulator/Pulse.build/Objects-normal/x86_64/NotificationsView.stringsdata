@@ -1,0 +1,16 @@
+{
+  "source": "/Users/jonah/Personal/Pulse/pulse-app/Pulse/Views/NotificationsView.swift",
+  "tables": {
+    "Localizable": [
+      {
+        "comment": "",
+        "key": "NOTIFICATIONS",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 54
+        }
+      }
+    ]
+  },
+  "version": 1
+}

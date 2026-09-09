@@ -7,7 +7,7 @@
         "key": "Delete account?",
         "location": {
           "startingColumn": 16,
-          "startingLine": 45
+          "startingLine": 46
         }
       },
       {
@@ -15,7 +15,7 @@
         "key": "SETTINGS",
         "location": {
           "startingColumn": 22,
-          "startingLine": 15
+          "startingLine": 16
         }
       },
       {
@@ -23,7 +23,7 @@
         "key": "Delete",
         "location": {
           "startingColumn": 20,
-          "startingLine": 46
+          "startingLine": 47
         }
       },
       {
@@ -31,7 +31,7 @@
         "key": "Cancel",
         "location": {
           "startingColumn": 20,
-          "startingLine": 55
+          "startingLine": 56
         }
       },
       {
@@ -39,7 +39,7 @@
         "key": "This permanently deletes your account, tracked artists and favourites. It cannot be undone.",
         "location": {
           "startingColumn": 18,
-          "startingLine": 57
+          "startingLine": 58
         }
       },
       {
@@ -47,7 +47,7 @@
         "key": "LOGGED IN AS",
         "location": {
           "startingColumn": 26,
-          "startingLine": 67
+          "startingLine": 68
         }
       },
       {
@@ -55,7 +55,7 @@
         "key": "SIGN OUT",
         "location": {
           "startingColumn": 26,
-          "startingLine": 80
+          "startingLine": 81
         }
       },
       {
@@ -63,7 +63,7 @@
         "key": "",
         "location": {
           "startingColumn": 20,
-          "startingLine": 144
+          "startingLine": 145
         }
       },
       {
@@ -71,7 +71,7 @@
         "key": "RECIPIENTS",
         "location": {
           "startingColumn": 18,
-          "startingLine": 153
+          "startingLine": 154
         }
       },
       {
@@ -79,7 +79,7 @@
         "key": "MAX %lld RECIPIENTS",
         "location": {
           "startingColumn": 22,
-          "startingLine": 216
+          "startingLine": 217
         }
       },
       {
@@ -87,7 +87,7 @@
         "key": "ADD",
         "location": {
           "startingColumn": 56,
-          "startingLine": 211
+          "startingLine": 212
         }
       },
       {
@@ -95,15 +95,23 @@
         "key": "SAVE",
         "location": {
           "startingColumn": 64,
-          "startingLine": 211
+          "startingLine": 212
         }
       },
       {
         "comment": "",
-        "key": "MORE LOCATIONS COMING SOON…",
+        "key": "TRACKED CITIES",
         "location": {
           "startingColumn": 26,
-          "startingLine": 257
+          "startingLine": 244
+        }
+      },
+      {
+        "comment": "",
+        "key": "ADD CITY",
+        "location": {
+          "startingColumn": 38,
+          "startingLine": 264
         }
       },
       {
@@ -111,7 +119,7 @@
         "key": "DELETE ACCOUNT",
         "location": {
           "startingColumn": 26,
-          "startingLine": 278
+          "startingLine": 361
         }
       }
     ]

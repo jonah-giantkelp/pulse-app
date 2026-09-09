@@ -1,0 +1,4 @@
+Target dependency graph (2 targets)
+Target 'Pulse' in project 'Pulse'
+➜ Explicit dependency on target 'PulseNotificationService' in project 'Pulse'
+Target 'PulseNotificationService' in project 'Pulse' (no dependencies)

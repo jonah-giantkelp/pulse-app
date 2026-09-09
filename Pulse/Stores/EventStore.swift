@@ -11,6 +11,15 @@ final class EventStore: ObservableObject {
 
     init(api: APIClient) {
         self.api = api
+        // Tracked-city changes alter the server-side filter — refetch so the
+        // Concerts feed updates without a manual pull-to-refresh. load()'s
+        // silent-refresh path (no isLoading flip when events exist) means the
+        // list swaps in place with no loading flash.
+        NotificationCenter.default.addObserver(
+            forName: .pulseCitiesChanged, object: nil, queue: .main
+        ) { [weak self] _ in
+            Task { @MainActor in await self?.load() }
+        }
     }
 
     func load() async {

@@ -6,8 +6,37 @@
 	objectVersion = 70;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		CAFEBABE000000000000001E /* PulseNotificationService.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = CAFEBABE0000000000000011 /* PulseNotificationService.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		CAFEBABE000000000000001B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CAFEBABE000000000000000A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CAFEBABE0000000000000014;
+			remoteInfo = PulseNotificationService;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		CAFEBABE000000000000001D /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				CAFEBABE000000000000001E /* PulseNotificationService.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		CAFEBABE0000000000000005 /* Pulse.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pulse.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CAFEBABE0000000000000011 /* PulseNotificationService.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = PulseNotificationService.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -18,14 +47,29 @@
 			);
 			target = CAFEBABE0000000000000006 /* Pulse */;
 		};
+		CAFEBABE0000000000000013 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = CAFEBABE0000000000000014 /* PulseNotificationService */;
+		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		CAFEBABE0000000000000001 /* Pulse */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (CAFEBABE0000000000000010 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = Pulse; sourceTree = "<group>"; };
+		CAFEBABE0000000000000012 /* PulseNotificationService */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (CAFEBABE0000000000000013 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = PulseNotificationService; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		CAFEBABE0000000000000002 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CAFEBABE0000000000000016 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -39,6 +83,7 @@
 			isa = PBXGroup;
 			children = (
 				CAFEBABE0000000000000001 /* Pulse */,
+				CAFEBABE0000000000000012 /* PulseNotificationService */,
 				CAFEBABE0000000000000004 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -47,6 +92,7 @@
 			isa = PBXGroup;
 			children = (
 				CAFEBABE0000000000000005 /* Pulse.app */,
+				CAFEBABE0000000000000011 /* PulseNotificationService.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -61,10 +107,12 @@
 				CAFEBABE0000000000000008 /* Sources */,
 				CAFEBABE0000000000000002 /* Frameworks */,
 				CAFEBABE0000000000000009 /* Resources */,
+				CAFEBABE000000000000001D /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				CAFEBABE000000000000001C /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				CAFEBABE0000000000000001 /* Pulse */,
@@ -76,7 +124,37 @@
 			productReference = CAFEBABE0000000000000005 /* Pulse.app */;
 			productType = "com.apple.product-type.application";
 		};
+		CAFEBABE0000000000000014 /* PulseNotificationService */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CAFEBABE0000000000000018 /* Build configuration list for PBXNativeTarget "PulseNotificationService" */;
+			buildPhases = (
+				CAFEBABE0000000000000015 /* Sources */,
+				CAFEBABE0000000000000016 /* Frameworks */,
+				CAFEBABE0000000000000017 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				CAFEBABE0000000000000012 /* PulseNotificationService */,
+			);
+			name = PulseNotificationService;
+			packageProductDependencies = (
+			);
+			productName = PulseNotificationService;
+			productReference = CAFEBABE0000000000000011 /* PulseNotificationService.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
+
+/* Begin PBXTargetDependency section */
+		CAFEBABE000000000000001C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CAFEBABE0000000000000014 /* PulseNotificationService */;
+			targetProxy = CAFEBABE000000000000001B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXProject section */
 		CAFEBABE000000000000000A /* Project object */ = {
@@ -90,6 +168,9 @@
 				LastUpgradeCheck = 1600;
 				TargetAttributes = {
 					CAFEBABE0000000000000006 = {
+						CreatedOnToolsVersion = 16.0;
+					};
+					CAFEBABE0000000000000014 = {
 						CreatedOnToolsVersion = 16.0;
 					};
 				};
@@ -109,6 +190,7 @@
 			projectRoot = "";
 			targets = (
 				CAFEBABE0000000000000006 /* Pulse */,
+				CAFEBABE0000000000000014 /* PulseNotificationService */,
 			);
 		};
 /* End PBXProject section */
@@ -121,10 +203,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		CAFEBABE0000000000000017 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		CAFEBABE0000000000000008 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CAFEBABE0000000000000015 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -260,7 +356,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Pulse.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = DKL5JL7V45;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -277,7 +373,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "giantkelp.pulse-app";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -295,7 +391,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = Pulse.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = DKL5JL7V45;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -312,9 +408,65 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "giantkelp.pulse-app";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		CAFEBABE0000000000000019 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 4;
+				DEVELOPMENT_TEAM = DKL5JL7V45;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = PulseNotificationService/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "PulseNotificationService";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.2;
+				PRODUCT_BUNDLE_IDENTIFIER = "giantkelp.pulse-app.PulseNotificationService";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		CAFEBABE000000000000001A /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 4;
+				DEVELOPMENT_TEAM = DKL5JL7V45;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = PulseNotificationService/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "PulseNotificationService";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.2;
+				PRODUCT_BUNDLE_IDENTIFIER = "giantkelp.pulse-app.PulseNotificationService";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -340,6 +492,15 @@
 			buildConfigurations = (
 				CAFEBABE000000000000000C /* Debug */,
 				CAFEBABE000000000000000D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+	CAFEBABE0000000000000018 /* Build configuration list for PBXNativeTarget "PulseNotificationService" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CAFEBABE0000000000000019 /* Debug */,
+				CAFEBABE000000000000001A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

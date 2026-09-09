@@ -23,7 +23,7 @@
         "key": "SYNCING",
         "location": {
           "startingColumn": 30,
-          "startingLine": 99
+          "startingLine": 103
         }
       },
       {
@@ -31,7 +31,7 @@
         "key": "Untrack",
         "location": {
           "startingColumn": 23,
-          "startingLine": 144
+          "startingLine": 148
         }
       }
     ]

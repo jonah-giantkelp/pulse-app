@@ -36,6 +36,9 @@ struct MainTabView: View {
     @EnvironmentObject private var artists: ArtistStore
     @EnvironmentObject private var events: EventStore
     @EnvironmentObject private var favourites: FavouritesStore
+    @EnvironmentObject private var notifications: NotificationStore
+    @EnvironmentObject private var settings: SettingsStore
+    @Environment(\.scenePhase) private var scenePhase
 
     var body: some View {
         VStack(spacing: 0) {
@@ -59,7 +62,18 @@ struct MainTabView: View {
             async let a: Void = artists.load()
             async let e: Void = events.load()
             async let f: Void = favourites.load()
-            _ = await (a, e, f)
+            async let n: Void = notifications.load()
+            // Settings load includes tracked cities — the Concerts location
+            // pill needs them before the user ever opens the Settings tab.
+            async let s: Void = settings.load()
+            _ = await (a, e, f, n, s)
+        }
+        // The 07:30 digest usually lands while the app is backgrounded —
+        // refresh the bell badge on return instead of waiting for a relaunch.
+        .onChange(of: scenePhase) { _, phase in
+            if phase == .active {
+                Task { await notifications.load() }
+            }
         }
     }
 }

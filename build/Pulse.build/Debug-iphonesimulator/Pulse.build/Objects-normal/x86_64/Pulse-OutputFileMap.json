@@ -106,6 +106,16 @@
     "swift-dependencies" : "/Users/jonah/Personal/Pulse/pulse-app/build/Pulse.build/Debug-iphonesimulator/Pulse.build/Objects-normal/x86_64/FavouritesStore.swiftdeps",
     "swiftmodule" : "/Users/jonah/Personal/Pulse/pulse-app/build/Pulse.build/Debug-iphonesimulator/Pulse.build/Objects-normal/x86_64/FavouritesStore~partial.swiftmodule"
   },
+  "/Users/jonah/Personal/Pulse/pulse-app/Pulse/Stores/NotificationStore.swift" : {
+    "const-values" : "/Users/jonah/Personal/Pulse/pulse-app/build/Pulse.build/Debug-iphonesimulator/Pulse.build/Objects-normal/x86_64/NotificationStore.swiftconstvalues",
+    "dependencies" : "/Users/jonah/Personal/Pulse/pulse-app/build/Pulse.build/Debug-iphonesimulator/Pulse.build/Objects-normal/x86_64/NotificationStore.d",
+    "diagnostics" : "/Users/jonah/Personal/Pulse/pulse-app/build/Pulse.build/Debug-iphonesimulator/Pulse.build/Objects-normal/x86_64/NotificationStore.dia",
+    "index-unit-output-path" : "/Pulse.build/Debug-iphonesimulator/Pulse.build/Objects-normal/x86_64/NotificationStore.o",
+    "llvm-bc" : "/Users/jonah/Personal/Pulse/pulse-app/build/Pulse.build/Debug-iphonesimulator/Pulse.build/Objects-normal/x86_64/NotificationStore.bc",
+    "object" : "/Users/jonah/Personal/Pulse/pulse-app/build/Pulse.build/Debug-iphonesimulator/Pulse.build/Objects-normal/x86_64/NotificationStore.o",
+    "swift-dependencies" : "/Users/jonah/Personal/Pulse/pulse-app/build/Pulse.build/Debug-iphonesimulator/Pulse.build/Objects-normal/x86_64/NotificationStore.swiftdeps",
+    "swiftmodule" : "/Users/jonah/Personal/Pulse/pulse-app/build/Pulse.build/Debug-iphonesimulator/Pulse.build/Objects-normal/x86_64/NotificationStore~partial.swiftmodule"
+  },
   "/Users/jonah/Personal/Pulse/pulse-app/Pulse/Stores/SettingsStore.swift" : {
     "const-values" : "/Users/jonah/Personal/Pulse/pulse-app/build/Pulse.build/Debug-iphonesimulator/Pulse.build/Objects-normal/x86_64/SettingsStore.swiftconstvalues",
     "dependencies" : "/Users/jonah/Personal/Pulse/pulse-app/build/Pulse.build/Debug-iphonesimulator/Pulse.build/Objects-normal/x86_64/SettingsStore.d",
@@ -205,6 +215,16 @@
     "object" : "/Users/jonah/Personal/Pulse/pulse-app/build/Pulse.build/Debug-iphonesimulator/Pulse.build/Objects-normal/x86_64/MainTabView.o",
     "swift-dependencies" : "/Users/jonah/Personal/Pulse/pulse-app/build/Pulse.build/Debug-iphonesimulator/Pulse.build/Objects-normal/x86_64/MainTabView.swiftdeps",
     "swiftmodule" : "/Users/jonah/Personal/Pulse/pulse-app/build/Pulse.build/Debug-iphonesimulator/Pulse.build/Objects-normal/x86_64/MainTabView~partial.swiftmodule"
+  },
+  "/Users/jonah/Personal/Pulse/pulse-app/Pulse/Views/NotificationsView.swift" : {
+    "const-values" : "/Users/jonah/Personal/Pulse/pulse-app/build/Pulse.build/Debug-iphonesimulator/Pulse.build/Objects-normal/x86_64/NotificationsView.swiftconstvalues",
+    "dependencies" : "/Users/jonah/Personal/Pulse/pulse-app/build/Pulse.build/Debug-iphonesimulator/Pulse.build/Objects-normal/x86_64/NotificationsView.d",
+    "diagnostics" : "/Users/jonah/Personal/Pulse/pulse-app/build/Pulse.build/Debug-iphonesimulator/Pulse.build/Objects-normal/x86_64/NotificationsView.dia",
+    "index-unit-output-path" : "/Pulse.build/Debug-iphonesimulator/Pulse.build/Objects-normal/x86_64/NotificationsView.o",
+    "llvm-bc" : "/Users/jonah/Personal/Pulse/pulse-app/build/Pulse.build/Debug-iphonesimulator/Pulse.build/Objects-normal/x86_64/NotificationsView.bc",
+    "object" : "/Users/jonah/Personal/Pulse/pulse-app/build/Pulse.build/Debug-iphonesimulator/Pulse.build/Objects-normal/x86_64/NotificationsView.o",
+    "swift-dependencies" : "/Users/jonah/Personal/Pulse/pulse-app/build/Pulse.build/Debug-iphonesimulator/Pulse.build/Objects-normal/x86_64/NotificationsView.swiftdeps",
+    "swiftmodule" : "/Users/jonah/Personal/Pulse/pulse-app/build/Pulse.build/Debug-iphonesimulator/Pulse.build/Objects-normal/x86_64/NotificationsView~partial.swiftmodule"
   },
   "/Users/jonah/Personal/Pulse/pulse-app/Pulse/Views/PendingApprovalView.swift" : {
     "const-values" : "/Users/jonah/Personal/Pulse/pulse-app/build/Pulse.build/Debug-iphonesimulator/Pulse.build/Objects-normal/x86_64/PendingApprovalView.swiftconstvalues",

@@ -4,10 +4,10 @@
     "Localizable": [
       {
         "comment": "",
-        "key": "%lld UPCOMING",
+        "key": "%lld",
         "location": {
-          "startingColumn": 26,
-          "startingLine": 18
+          "startingColumn": 30,
+          "startingLine": 46
         }
       },
       {
@@ -15,7 +15,7 @@
         "key": "%lld NIGHTS",
         "location": {
           "startingColumn": 30,
-          "startingLine": 169
+          "startingLine": 213
         }
       },
       {
@@ -23,7 +23,7 @@
         "key": "NO EVENTS",
         "location": {
           "startingColumn": 30,
-          "startingLine": 253
+          "startingLine": 297
         }
       },
       {
@@ -31,7 +31,7 @@
         "key": "%lld",
         "location": {
           "startingColumn": 22,
-          "startingLine": 316
+          "startingLine": 360
         }
       }
     ]

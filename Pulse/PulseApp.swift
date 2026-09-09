@@ -26,6 +26,7 @@ struct PulseApp: App {
     @StateObject private var artists: ArtistStore
     @StateObject private var events: EventStore
     @StateObject private var favourites: FavouritesStore
+    @StateObject private var notifications: NotificationStore
     @StateObject private var settings: SettingsStore
     @StateObject private var access: AccessStore
     @StateObject private var router = AppRouter()
@@ -37,6 +38,7 @@ struct PulseApp: App {
         _artists = StateObject(wrappedValue: ArtistStore(api: api))
         _events = StateObject(wrappedValue: EventStore(api: api))
         _favourites = StateObject(wrappedValue: FavouritesStore(api: api))
+        _notifications = StateObject(wrappedValue: NotificationStore(api: api))
         _settings = StateObject(wrappedValue: SettingsStore(api: api))
         _access = StateObject(wrappedValue: AccessStore(api: api))
     }
@@ -48,6 +50,7 @@ struct PulseApp: App {
                 .environmentObject(artists)
                 .environmentObject(events)
                 .environmentObject(favourites)
+                .environmentObject(notifications)
                 .environmentObject(settings)
                 .environmentObject(access)
                 .environmentObject(router)

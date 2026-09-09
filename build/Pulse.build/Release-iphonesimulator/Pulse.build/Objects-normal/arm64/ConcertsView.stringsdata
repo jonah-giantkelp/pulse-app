@@ -4,10 +4,26 @@
     "Localizable": [
       {
         "comment": "",
-        "key": "%lld UPCOMING",
+        "key": "%lld",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 148
+        }
+      },
+      {
+        "comment": "",
+        "key": "EDIT LOCATIONS",
         "location": {
           "startingColumn": 26,
-          "startingLine": 18
+          "startingLine": 170
+        }
+      },
+      {
+        "comment": "",
+        "key": "%lld",
+        "location": {
+          "startingColumn": 30,
+          "startingLine": 201
         }
       },
       {
@@ -15,7 +31,7 @@
         "key": "%lld NIGHTS",
         "location": {
           "startingColumn": 30,
-          "startingLine": 182
+          "startingLine": 368
         }
       },
       {
@@ -23,7 +39,7 @@
         "key": "NO EVENTS",
         "location": {
           "startingColumn": 30,
-          "startingLine": 266
+          "startingLine": 452
         }
       },
       {
@@ -31,7 +47,7 @@
         "key": "%lld",
         "location": {
           "startingColumn": 22,
-          "startingLine": 329
+          "startingLine": 515
         }
       }
     ]

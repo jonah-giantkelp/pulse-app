@@ -8,6 +8,7 @@ struct SettingsView: View {
     @State private var editingRecipient: String?
     @State private var showDeleteConfirm = false
     @State private var isDeletingAccount = false
+    @State private var showCityPicker = false
 
     var body: some View {
         VStack(spacing: 0) {
@@ -233,34 +234,116 @@ struct SettingsView: View {
         recipientInput = ""
     }
 
-    // MARK: - Locations (display-only for now)
+    // MARK: - Locations
 
     private var locationsSection: some View {
         VStack(alignment: .leading, spacing: 12) {
             PulseSectionHeader(text: "Locations")
             PulseCard {
                 VStack(alignment: .leading, spacing: 10) {
-                    HStack(spacing: 6) {
-                        ForEach(settings.cities.isEmpty ? ["London"] : settings.cities, id: \.self) { city in
-                            Text(city.capitalized)
-                                .font(.mono(11))
-                                .foregroundStyle(.white)
-                                .padding(.horizontal, 9)
-                                .padding(.vertical, 5)
-                                .overlay(
-                                    RoundedRectangle(cornerRadius: 5)
-                                        .stroke(Color.pulseBorderLight, lineWidth: 1)
-                                )
-                        }
-                        Spacer()
-                    }
-                    Text("MORE LOCATIONS COMING SOON…")
-                        .font(.mono(9))
+                    Text("TRACKED CITIES")
+                        .font(.mono(10, .bold))
                         .kerning(1)
-                        .foregroundStyle(Color.pulseTextFaint)
+                        .foregroundStyle(Color.pulseTextMuted)
+
+                    FlowLayout(spacing: 6) {
+                        ForEach(settings.cities.isEmpty ? ["London"] : settings.cities, id: \.self) { city in
+                            trackedCityPill(city)
+                        }
+                    }
+
+                    if !settings.availableCities.isEmpty {
+                        Button {
+                            withAnimation(.spring(duration: 0.35, bounce: 0.15)) {
+                                showCityPicker.toggle()
+                            }
+                        } label: {
+                            HStack(spacing: 5) {
+                                Image(systemName: "plus")
+                                    .font(.system(size: 10, weight: .bold))
+                                Text("ADD CITY")
+                                    .font(.mono(10, .bold))
+                                    .kerning(1)
+                                Image(systemName: "chevron.down")
+                                    .font(.system(size: 8, weight: .bold))
+                                    .rotationEffect(.degrees(showCityPicker ? 180 : 0))
+                            }
+                            .foregroundStyle(Color.pulseAccent)
+                            .contentShape(Rectangle())
+                        }
+                        .buttonStyle(.plain)
+                        .padding(.top, 2)
+
+                        // Picker unfolds from under the toggle, no overflow flash
+                        VStack(alignment: .leading, spacing: 10) {
+                            if showCityPicker {
+                                Rectangle()
+                                    .frame(height: 1)
+                                    .foregroundStyle(Color.pulseBorder)
+                                FlowLayout(spacing: 6) {
+                                    ForEach(settings.availableCities) { city in
+                                        availableCityPill(city)
+                                    }
+                                }
+                                .transition(.opacity.combined(with: .move(edge: .top)))
+                            }
+                        }
+                        .clipped()
+                    }
                 }
             }
         }
+    }
+
+    private func trackedCityPill(_ city: String) -> some View {
+        HStack(spacing: 6) {
+            Text(city.capitalized)
+                .font(.mono(11))
+                .foregroundStyle(.white)
+            if settings.cities.count > 1 {
+                Button {
+                    withAnimation(.spring(duration: 0.35, bounce: 0.15)) {
+                        settings.removeCity(city)
+                    }
+                } label: {
+                    Image(systemName: "xmark")
+                        .font(.system(size: 9, weight: .bold))
+                        .foregroundStyle(Color.pulseTextFaint)
+                        .contentShape(Rectangle())
+                }
+                .buttonStyle(.plain)
+            }
+        }
+        .padding(.horizontal, 9)
+        .padding(.vertical, 5)
+        .overlay(
+            RoundedRectangle(cornerRadius: 5)
+                .stroke(Color.pulseBorderLight, lineWidth: 1)
+        )
+    }
+
+    private func availableCityPill(_ city: City) -> some View {
+        Button {
+            withAnimation(.spring(duration: 0.35, bounce: 0.15)) {
+                settings.addCity(city.name)
+            }
+        } label: {
+            HStack(spacing: 5) {
+                Image(systemName: "plus")
+                    .font(.system(size: 9, weight: .bold))
+                Text(city.name.capitalized)
+                    .font(.mono(11))
+            }
+            .foregroundStyle(Color.pulseTextSecondary)
+            .padding(.horizontal, 9)
+            .padding(.vertical, 5)
+            .overlay(
+                RoundedRectangle(cornerRadius: 5)
+                    .stroke(Color.pulseBorder, lineWidth: 1)
+            )
+            .contentShape(Rectangle())
+        }
+        .buttonStyle(.plain)
     }
 
     // MARK: - Danger zone

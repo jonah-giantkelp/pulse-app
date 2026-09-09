@@ -7,30 +7,210 @@ struct ConcertsView: View {
     }
 
     @EnvironmentObject private var events: EventStore
+    @EnvironmentObject private var notifications: NotificationStore
+    @EnvironmentObject private var settings: SettingsStore
+    @EnvironmentObject private var router: AppRouter
     @State private var mode: Mode = .list
+    @State private var showNotifications = false
+    @State private var showLocationMenu = false
+    @State private var hiddenCities: Set<String> = []
 
     var body: some View {
-        VStack(spacing: 0) {
-            VStack(spacing: 14) {
-                HStack {
-                    PulseWordmark()
-                    Spacer()
-                    Text("\(events.events.count) UPCOMING")
-                        .font(.mono(10))
-                        .kerning(1)
-                        .foregroundStyle(Color.pulseTextMuted)
+        ZStack(alignment: .topTrailing) {
+            VStack(spacing: 0) {
+                VStack(spacing: 14) {
+                    HStack {
+                        PulseWordmark()
+                        Spacer()
+                        locationPill
+                        notificationBell
+                    }
+
+                    modeToggle
                 }
+                .padding(.horizontal, 16)
+                .padding(.top, 8)
+                .padding(.bottom, 12)
 
-                modeToggle
+                switch mode {
+                case .list: eventList
+                case .calendar: CalendarModeView(events: visibleEvents)
+                }
             }
-            .padding(.horizontal, 16)
-            .padding(.top, 8)
-            .padding(.bottom, 12)
 
-            switch mode {
-            case .list: eventList
-            case .calendar: CalendarModeView(events: events.events)
+            if showLocationMenu {
+                // Invisible tap-catcher so tapping anywhere else closes the menu
+                Color.black.opacity(0.001)
+                    .ignoresSafeArea()
+                    .onTapGesture { toggleLocationMenu() }
+                locationMenu
+                    .padding(.top, 44)
+                    .padding(.trailing, 52)
+                    .transition(
+                        .scale(scale: 0.85, anchor: .topTrailing)
+                            .combined(with: .opacity)
+                    )
             }
+        }
+    }
+
+    // MARK: - Location filter
+
+    /// Tracked cities from prefs; legacy users without a prefs row fall back
+    /// to London (same default the server applies).
+    private var trackedCities: [String] {
+        settings.cities.isEmpty ? ["London"] : settings.cities
+    }
+
+    private var activeCities: [String] {
+        trackedCities.filter { !hiddenCities.contains($0) }
+    }
+
+    private var isFiltered: Bool {
+        trackedCities.count > 1 && activeCities.count < trackedCities.count
+    }
+
+    private var visibleEvents: [Event] {
+        guard isFiltered else { return events.events }
+        let hidden = Set(hiddenCities.map { $0.lowercased() })
+        return events.events.filter { event in
+            guard let city = event.city?.lowercased() else { return true }
+            return !hidden.contains(city)
+        }
+    }
+
+    private func cityCount(_ city: String) -> Int {
+        events.events.filter { $0.city?.lowercased() == city.lowercased() }.count
+    }
+
+    private func toggleLocationMenu() {
+        withAnimation(.spring(duration: 0.35, bounce: 0.15)) {
+            showLocationMenu.toggle()
+        }
+    }
+
+    private var locationLabel: String {
+        if trackedCities.count == 1 { return trackedCities[0].uppercased() }
+        if isFiltered { return "\(activeCities.count)/\(trackedCities.count) LOCATIONS" }
+        return "\(trackedCities.count) LOCATIONS"
+    }
+
+    private var locationPill: some View {
+        Button {
+            toggleLocationMenu()
+        } label: {
+            HStack(spacing: 5) {
+                Text(locationLabel)
+                    .font(.mono(10, .bold))
+                    .kerning(1)
+                Image(systemName: "chevron.down")
+                    .font(.system(size: 8, weight: .bold))
+                    .rotationEffect(.degrees(showLocationMenu ? 180 : 0))
+            }
+            .foregroundStyle(isFiltered ? Color.pulseAccent : Color.pulseTextMuted)
+            .padding(.horizontal, 10)
+            .padding(.vertical, 6)
+            .overlay(
+                RoundedRectangle(cornerRadius: 5)
+                    .stroke(isFiltered ? Color.pulseAccent : Color.pulseBorderLight, lineWidth: 1)
+            )
+            .contentShape(Rectangle())
+        }
+        .buttonStyle(.plain)
+    }
+
+    private var locationMenu: some View {
+        VStack(alignment: .leading, spacing: 0) {
+            ForEach(trackedCities, id: \.self) { city in
+                let active = !hiddenCities.contains(city)
+                Button {
+                    // Never allow hiding the last visible city
+                    guard !active || activeCities.count > 1 else { return }
+                    withAnimation(.snappy) {
+                        if active {
+                            hiddenCities.insert(city)
+                        } else {
+                            hiddenCities.remove(city)
+                        }
+                    }
+                } label: {
+                    HStack(spacing: 8) {
+                        Image(systemName: "checkmark")
+                            .font(.system(size: 10, weight: .bold))
+                            .foregroundStyle(Color.pulseAccent)
+                            .frame(width: 14)
+                            .opacity(active ? 1 : 0)
+                        Text(city.uppercased())
+                            .font(.mono(11, active ? .bold : .regular))
+                            .kerning(1)
+                            .foregroundStyle(active ? .white : Color.pulseTextMuted)
+                        Spacer(minLength: 16)
+                        Text("\(cityCount(city))")
+                            .font(.mono(10))
+                            .foregroundStyle(Color.pulseTextFaint)
+                    }
+                    .padding(.horizontal, 12)
+                    .padding(.vertical, 10)
+                    .contentShape(Rectangle())
+                }
+                .buttonStyle(.plain)
+
+                Rectangle()
+                    .frame(height: 1)
+                    .foregroundStyle(Color.pulseBorder)
+            }
+
+            Button {
+                toggleLocationMenu()
+                router.tab = .settings
+            } label: {
+                HStack(spacing: 6) {
+                    Image(systemName: "plus")
+                        .font(.system(size: 9, weight: .bold))
+                    Text("EDIT LOCATIONS")
+                        .font(.mono(10, .bold))
+                        .kerning(1)
+                }
+                .foregroundStyle(Color.pulseAccent)
+                .padding(.horizontal, 12)
+                .padding(.vertical, 10)
+                .contentShape(Rectangle())
+            }
+            .buttonStyle(.plain)
+        }
+        .frame(width: 200)
+        .background(Color.pulseCard)
+        .clipShape(RoundedRectangle(cornerRadius: 8))
+        .overlay(
+            RoundedRectangle(cornerRadius: 8)
+                .stroke(Color.pulseBorder, lineWidth: 1)
+        )
+        .shadow(color: .black.opacity(0.45), radius: 18, y: 8)
+    }
+
+    private var notificationBell: some View {
+        Button {
+            showNotifications = true
+        } label: {
+            Image(systemName: "bell")
+                .font(.system(size: 17))
+                .foregroundStyle(Color.pulseTextMuted)
+                .frame(width: 32, height: 32)
+                .overlay(alignment: .topTrailing) {
+                    if notifications.unreadCount > 0 {
+                        Text("\(min(notifications.unreadCount, 99))")
+                            .font(.mono(9, .bold))
+                            .foregroundStyle(.white)
+                            .padding(.horizontal, 4)
+                            .padding(.vertical, 2)
+                            .background(Capsule().fill(Color.pulseDanger))
+                    }
+                }
+                .contentShape(Rectangle())
+        }
+        .buttonStyle(.plain)
+        .sheet(isPresented: $showNotifications) {
+            NotificationsView(isPresented: $showNotifications)
         }
     }
 
@@ -71,7 +251,7 @@ struct ConcertsView: View {
                         EmptyState(icon: "waveform", message: "No upcoming events for your artists")
                     }
                 } else {
-                    GroupedEventList(events: events.events)
+                    GroupedEventList(events: visibleEvents)
                 }
             }
             .padding(.horizontal, 16)
@@ -79,7 +259,13 @@ struct ConcertsView: View {
         }
         // Unstructured task: SwiftUI tears the .refreshable task down when the
         // view re-renders mid-pull, which used to cancel the request itself.
-        .refreshable { await Task { await events.load() }.value }
+        .refreshable {
+            await Task {
+                async let e: Void = events.load()
+                async let n: Void = notifications.load()
+                _ = await (e, n)
+            }.value
+        }
     }
 }
 

@@ -1,0 +1,16 @@
+{
+  "" : {
+    "const-values" : "/Users/jonah/Personal/Pulse/pulse-app/build/Pulse.build/Release-iphonesimulator/PulseNotificationService.build/Objects-normal/arm64/PulseNotificationService-primary.swiftconstvalues",
+    "dependencies" : "/Users/jonah/Personal/Pulse/pulse-app/build/Pulse.build/Release-iphonesimulator/PulseNotificationService.build/Objects-normal/arm64/PulseNotificationService-primary.d",
+    "diagnostics" : "/Users/jonah/Personal/Pulse/pulse-app/build/Pulse.build/Release-iphonesimulator/PulseNotificationService.build/Objects-normal/arm64/PulseNotificationService-primary.dia",
+    "emit-module-dependencies" : "/Users/jonah/Personal/Pulse/pulse-app/build/Pulse.build/Release-iphonesimulator/PulseNotificationService.build/Objects-normal/arm64/PulseNotificationService-primary-emit-module.d",
+    "emit-module-diagnostics" : "/Users/jonah/Personal/Pulse/pulse-app/build/Pulse.build/Release-iphonesimulator/PulseNotificationService.build/Objects-normal/arm64/PulseNotificationService-primary-emit-module.dia",
+    "pch" : "/Users/jonah/Personal/Pulse/pulse-app/build/Pulse.build/Release-iphonesimulator/PulseNotificationService.build/Objects-normal/arm64/PulseNotificationService-primary-Bridging-header.pch",
+    "swift-dependencies" : "/Users/jonah/Personal/Pulse/pulse-app/build/Pulse.build/Release-iphonesimulator/PulseNotificationService.build/Objects-normal/arm64/PulseNotificationService-primary.swiftdeps"
+  },
+  "/Users/jonah/Personal/Pulse/pulse-app/PulseNotificationService/NotificationService.swift" : {
+    "index-unit-output-path" : "/Pulse.build/Release-iphonesimulator/PulseNotificationService.build/Objects-normal/arm64/NotificationService.o",
+    "llvm-bc" : "/Users/jonah/Personal/Pulse/pulse-app/build/Pulse.build/Release-iphonesimulator/PulseNotificationService.build/Objects-normal/arm64/NotificationService.bc",
+    "object" : "/Users/jonah/Personal/Pulse/pulse-app/build/Pulse.build/Release-iphonesimulator/PulseNotificationService.build/Objects-normal/arm64/NotificationService.o"
+  }
+}

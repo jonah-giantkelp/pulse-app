@@ -4,6 +4,9 @@ import UserNotifications
 
 extension Notification.Name {
     static let pulsePushToken = Notification.Name("pulsePushToken")
+    /// Posted after the server confirms a tracked-city add/remove, so the
+    /// events feed can refetch with the new location filter.
+    static let pulseCitiesChanged = Notification.Name("pulseCitiesChanged")
 }
 
 /// Preferences auto-save on every change — no save button.
@@ -13,6 +16,7 @@ final class SettingsStore: ObservableObject {
     @Published private(set) var recipients: [String] = []
     @Published private(set) var pushEnabled = false
     @Published private(set) var cities: [String] = []
+    @Published private(set) var allCities: [City] = []
     @Published private(set) var isLoading = false
     @Published var errorMessage: String?
 
@@ -43,6 +47,52 @@ final class SettingsStore: ObservableObject {
             errorMessage = nil
         } catch {
             errorMessage = error.localizedDescription
+        }
+        if allCities.isEmpty {
+            allCities = (try? await api.cities()) ?? []
+        }
+    }
+
+    // MARK: - Tracked cities
+
+    /// Cities available to add (canonical list minus already-tracked).
+    var availableCities: [City] {
+        let tracked = Set(cities.map { $0.lowercased() })
+        return allCities.filter { !tracked.contains($0.name.lowercased()) }
+    }
+
+    func addCity(_ name: String) {
+        guard !cities.contains(where: { $0.lowercased() == name.lowercased() }) else { return }
+        cities.append(name)
+        Task {
+            do {
+                let resp = try await api.addCity(name)
+                if let updated = resp.defaultCities { cities = updated }
+                errorMessage = nil
+                NotificationCenter.default.post(name: .pulseCitiesChanged, object: nil)
+            } catch {
+                cities.removeAll { $0.lowercased() == name.lowercased() }
+                errorMessage = error.localizedDescription
+            }
+        }
+    }
+
+    /// Removing the last city would silently widen the feed to everywhere —
+    /// keep at least one tracked.
+    func removeCity(_ name: String) {
+        guard cities.count > 1 else { return }
+        let before = cities
+        cities.removeAll { $0.lowercased() == name.lowercased() }
+        Task {
+            do {
+                let resp = try await api.removeCity(name)
+                if let updated = resp.defaultCities { cities = updated }
+                errorMessage = nil
+                NotificationCenter.default.post(name: .pulseCitiesChanged, object: nil)
+            } catch {
+                cities = before
+                errorMessage = error.localizedDescription
+            }
         }
     }
 

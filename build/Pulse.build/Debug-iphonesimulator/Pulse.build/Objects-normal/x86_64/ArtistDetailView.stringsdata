@@ -7,7 +7,7 @@
         "key": "NO UPCOMING EVENTS IN YOUR LOCATIONS",
         "location": {
           "startingColumn": 53,
-          "startingLine": 49
+          "startingLine": 51
         }
       },
       {
@@ -15,7 +15,7 @@
         "key": "NO UPCOMING EVENTS ELSEWHERE",
         "location": {
           "startingColumn": 94,
-          "startingLine": 49
+          "startingLine": 51
         }
       },
       {
@@ -23,7 +23,15 @@
         "key": "UNTRACK ARTIST",
         "location": {
           "startingColumn": 26,
-          "startingLine": 67
+          "startingLine": 69
+        }
+      },
+      {
+        "comment": "",
+        "key": "ARTIST",
+        "location": {
+          "startingColumn": 18,
+          "startingLine": 109
         }
       },
       {
@@ -31,7 +39,7 @@
         "key": "%@ (%lld)",
         "location": {
           "startingColumn": 22,
-          "startingLine": 113
+          "startingLine": 152
         }
       }
     ]

@@ -124,6 +124,13 @@ struct Event: Codable, Identifiable, Hashable {
     }
 }
 
+struct UserNotification: Codable, Identifiable, Hashable {
+    let id: UUID
+    let createdAt: Date
+    var readAt: Date?
+    let event: Event
+}
+
 struct EmailPreferences: Codable {
     var email: String?
     var recipients: [String]?
@@ -131,6 +138,20 @@ struct EmailPreferences: Codable {
     var pushEnabled: Bool?
     var defaultCities: [String]
     var defaultCountries: [String]
+}
+
+/// A trackable city from GET /cities (the canonical server-side list).
+struct City: Codable, Identifiable, Hashable {
+    let key: String
+    let name: String
+    let country: String
+    var id: String { key }
+}
+
+/// Tolerant decode for the city add/remove responses — the server returns
+/// the full prefs row, but only default_cities matters here.
+struct CityListResponse: Codable {
+    let defaultCities: [String]?
 }
 
 struct AddArtistResponse: Codable {
